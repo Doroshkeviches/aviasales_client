@@ -1,4 +1,4 @@
-import { Ticket } from "./Ticket.type";
+// import { Ticket } from "./Ticket.type";
 import { Plane } from "./Plane.type";
 import { City } from "./City.type";
 

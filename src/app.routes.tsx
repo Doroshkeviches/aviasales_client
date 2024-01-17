@@ -32,7 +32,6 @@ const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
 // ======= public route ======= //
 const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
   <>
-    {/* <ClientHeaderComp /> */}
     <Suspense fallback={<div />}>
       <Element />
     </Suspense>
@@ -41,9 +40,9 @@ const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
 
 // ======= pages ======= //
 const AuthRoutes = React.lazy(() => import("./app/auth/index"))
-const UserRoutes = React.lazy(() => import("./app/user/index"))
-// const CartRoutes = React.lazy(() => import("./app/cart/index"))
 const FlightsRoutes = React.lazy(() => import("./app/flights/index"))
+const CartRoutes = React.lazy(() => import("./app/cart/index"))
+const UserRoutes = React.lazy(() => import("./app/user/index"))
 
 const AppRoutes = () => {
   return (
@@ -53,9 +52,9 @@ const AppRoutes = () => {
         <Route path='/auth/*' element={<PublicRoute element={AuthRoutes} />} />
 
         {/* PRIVATE */}
-        <Route path='/flights/*' element={<PublicRoute element={FlightsRoutes} />} />
-        <Route path='/user/*' element={<PublicRoute element={UserRoutes} />} />
-        {/* <Route path='/cart/*' element={<PublicRoute element={CartRoutes} />} /> */}
+        <Route path='/flights/*' element={<PrivateRoute element={FlightsRoutes} />} />
+        <Route path='/cart/*' element={<PrivateRoute element={CartRoutes} />} />
+        <Route path='/user/*' element={<PrivateRoute element={UserRoutes} />} />
 
         {/* DEFAULT */}
         <Route path='/*' element={<Navigate to="/flights" />} />
