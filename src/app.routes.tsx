@@ -59,6 +59,7 @@ const AuthRoutes = React.lazy(() => import("./app/auth/index"))
 const TicketRoutes = React.lazy(() => import("./app/tickets/index"))
 const UsersRoutes = React.lazy(() => import("./app/users/index"))
 const FlightsRoutes = React.lazy(() => import("./app/flights/index"))
+const CartRoutes = React.lazy(() => import("./app/cart/index"))
 
 const AppRoutes = () => {
   return (
@@ -70,6 +71,8 @@ const AppRoutes = () => {
         {/* PRIVATE */}
         <Route path='/admin/flights/*' element={<PrivateRoute element={FlightsRoutes} />} />
         <Route path='/admin/tickets/*' element={<PrivateRoute element={TicketRoutes} />} />
+        <Route path='/cart/*' element={<PrivateRoute element={CartRoutes} />} />
+
 
         {/* ADMIN PRIVATE */}
         <Route path='/admin/users/*' element={<AdminPrivateRoute element={UsersRoutes} />} />
