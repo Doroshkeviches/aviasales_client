@@ -5,7 +5,7 @@ import { tokens } from 'src/app/auth/types/tokens.type';
 import { ResetToken } from '../types/ResetToken.type';
 import { ForgotPassword } from '../types/ForgotPassword.type';
 import { ResetPassword } from '../types/ResetPassword.type';
-import { SithUp } from '../types/SignUp.type';
+import { SignUp } from '../types/SignUp.type';
 import getDeviceId from '../utils/getDeviceId';
 
 const baseUrl = process.env.REACT_APP_API_URL;
@@ -28,7 +28,7 @@ export const signin = createAsyncThunk<tokens, LogIn>(
 );
 
 
-export const signup = createAsyncThunk<tokens, SithUp>(
+export const signup = createAsyncThunk<tokens, SignUp>(
   'POST/signup',
   async (body, { rejectWithValue }) => {
     try {
