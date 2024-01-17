@@ -9,6 +9,7 @@ import { sessionSelector } from "./app/auth/store/auth.selector";
 import { Container } from "@mui/material";
 
 // ======= components ======= //
+import ClientHeaderComp from "./components/client-header.component";
 
 // ======= helpers ======= //
 import { RoutesConstant } from "./constants/RoutesConstants.enum";
@@ -18,6 +19,7 @@ const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
   const session = useAppSelector(sessionSelector)
   return session ? (
     <>
+      <ClientHeaderComp />
       <Suspense fallback={<div />}>
         <Element />
       </Suspense>
@@ -38,25 +40,21 @@ const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
 
 // ======= pages ======= //
 const AuthRoutes = React.lazy(() => import("./app/auth/index"))
-const TicketRoutes = React.lazy(() => import("./app/tickets/index"))
-const UsersRoutes = React.lazy(() => import("./app/users/index"))
 const FlightsRoutes = React.lazy(() => import("./app/flights/index"))
 const CartRoutes = React.lazy(() => import("./app/cart/index"))
+const UserRoutes = React.lazy(() => import("./app/user/index"))
 
 const AppRoutes = () => {
   return (
     <Container>
       <Routes>
         {/* PUBLIC */}
-        <Route path='/admin/auth/*' element={<PublicRoute element={AuthRoutes} />} />
+        <Route path='/auth/*' element={<PublicRoute element={AuthRoutes} />} />
 
         {/* PRIVATE */}
         <Route path='/flights/*' element={<PrivateRoute element={FlightsRoutes} />} />
-        <Route path='/tickets/*' element={<PrivateRoute element={TicketRoutes} />} />
         <Route path='/cart/*' element={<PrivateRoute element={CartRoutes} />} />
-
-        {/* ADMIN PRIVATE */}
-        <Route path='/users/*' element={<PublicRoute element={UsersRoutes} />} />
+        <Route path='/user/*' element={<PrivateRoute element={UserRoutes} />} />
 
         {/* DEFAULT */}
         <Route path='/*' element={<Navigate to="/flights" />} />

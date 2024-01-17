@@ -11,14 +11,14 @@ const Suspended: FC<PropsWithChildren & { element: any }> = ({ element: Element 
 };
 
 // ======= pages ======= //
-const TicketPage = React.lazy(() => import("./tickets-page"))
+const UserPage = React.lazy(() => import("./user-page"))
 
-const TicketRoutes: FC = () => {
+const UserRoutes: FC = () => {
   return (
     <Routes>
-      <Route path={""} element={<Suspended element={TicketPage} />} />
+      <Route path={""} element={<Suspended element={UserPage} />} />
     </Routes>
   );
 };
 
-export default TicketRoutes;
+export default UserRoutes;
