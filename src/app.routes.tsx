@@ -9,8 +9,7 @@ import { sessionSelector } from "./app/auth/store/auth.selector";
 import { Container } from "@mui/material";
 
 // ======= components ======= //
-import AdminHeaderComp from "./components/admin-header.comp";
-import ManagerHeaderComp from "./components/manager-header.component";
+import ClientHeaderComp from "./components/client-header.component";
 
 // ======= helpers ======= //
 import { RoutesConstant } from "./constants/RoutesConstants.enum";
@@ -20,7 +19,7 @@ const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
   const session = useAppSelector(sessionSelector)
   return session ? (
     <>
-      <ManagerHeaderComp />
+      <ClientHeaderComp />
       <Suspense fallback={<div />}>
         <Element />
       </Suspense>
@@ -33,6 +32,7 @@ const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
 // ======= public route ======= //
 const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
   <>
+    {/* <ClientHeaderComp /> */}
     <Suspense fallback={<div />}>
       <Element />
     </Suspense>
@@ -41,8 +41,8 @@ const PublicRoute: FC<{ element: any }> = ({ element: Element }) => (
 
 // ======= pages ======= //
 const AuthRoutes = React.lazy(() => import("./app/auth/index"))
-const TicketRoutes = React.lazy(() => import("./app/tickets/index"))
-const UsersRoutes = React.lazy(() => import("./app/users/index"))
+const UserRoutes = React.lazy(() => import("./app/user/index"))
+// const CartRoutes = React.lazy(() => import("./app/cart/index"))
 const FlightsRoutes = React.lazy(() => import("./app/flights/index"))
 
 const AppRoutes = () => {
@@ -50,17 +50,15 @@ const AppRoutes = () => {
     <Container>
       <Routes>
         {/* PUBLIC */}
-        <Route path='/admin/auth/*' element={<PublicRoute element={AuthRoutes} />} />
+        <Route path='/auth/*' element={<PublicRoute element={AuthRoutes} />} />
 
         {/* PRIVATE */}
-        <Route path='/admin/flights/*' element={<PublicRoute element={FlightsRoutes} />} />
-        <Route path='/admin/tickets/*' element={<PublicRoute element={TicketRoutes} />} />
-
-        {/* ADMIN PRIVATE */}
-        <Route path='/admin/users/*' element={<PublicRoute element={UsersRoutes} />} />
+        <Route path='/flights/*' element={<PublicRoute element={FlightsRoutes} />} />
+        <Route path='/user/*' element={<PublicRoute element={UserRoutes} />} />
+        {/* <Route path='/cart/*' element={<PublicRoute element={CartRoutes} />} /> */}
 
         {/* DEFAULT */}
-        <Route path='/*' element={<Navigate to="/admin/flights" />} />
+        <Route path='/*' element={<Navigate to="/flights" />} />
       </Routes>
     </Container>
   );

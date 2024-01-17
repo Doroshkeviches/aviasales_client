@@ -5,7 +5,7 @@ import { RoutesConstant } from "src/constants/RoutesConstants.enum";
 import { useAppDispatch } from "src/storeTypes";
 import { signout } from "src/utils/signout";
 
-const ManagerHeaderComp: FC = () => {
+const ClientHeaderComp: FC = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
@@ -14,7 +14,8 @@ const ManagerHeaderComp: FC = () => {
     }
 
     const navToFlights = () => navigate(RoutesConstant.flights)
-    const navToTickets = () => navigate(RoutesConstant.tickets)
+    const navToCart = () => navigate(RoutesConstant.cart)
+    const navToProfile = () => navigate(RoutesConstant.user)
 
     return (
         <header style={{ display: 'flex', padding: '10px 60px', justifyContent: 'center' }}>
@@ -22,11 +23,14 @@ const ManagerHeaderComp: FC = () => {
                 <Typography variant="h4" onClick={navToFlights} className="navlink">Flights</Typography>
             </MenuItem>
             <MenuItem >
-                <Typography variant="h4" onClick={navToTickets} className="navlink">Tickets</Typography>
+                <Typography variant="h4" onClick={navToProfile} className="navlink">Profile</Typography>
+            </MenuItem>
+            <MenuItem >
+                <Typography variant="h4" onClick={navToCart} className="navlink">Cart</Typography>
             </MenuItem>
             <Button onClick={handleClickSignOut} variant="contained" color="error" sx={{ marginLeft: 'auto' }}>Sign out</Button>
         </header>
     );
 };
 
-export default ManagerHeaderComp;
+export default ClientHeaderComp;
