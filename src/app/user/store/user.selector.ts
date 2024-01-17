@@ -10,3 +10,9 @@ export const userTicketsErrorsSelector = (state: RootState) =>
   state.user.errors.tickets;
 export const userTicketsPendingSelector = (state: RootState) =>
   state.user.pending.tickets;
+
+export const devicesSelector = (state: RootState) => state.user.devices;
+export const devicesErrorsSelector = (state: RootState) =>
+  state.user.errors.devices;
+export const devicesPendingSelector = (state: RootState) =>
+  state.user.pending.devices;
