@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { signout } from 'src/utils/signout';
 
 // ======= store ======= //
-import { signin } from './store/auth.actions';
+import { signin, signup } from './store/auth.actions';
 import { sessionErrorsSelector, sessionPendingSelector, sessionSelector } from './store/auth.selector';
 import { useAppDispatch, useAppSelector } from 'src/storeTypes';
 
@@ -44,6 +44,9 @@ export default function LoginPage() {
                 password_regular,
                 "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
             ),
+        first_name: Yup.string().required('No first name').min(2),
+        last_name: Yup.string().required('No first name').min(2)
+
 
     });
 
@@ -51,10 +54,12 @@ export default function LoginPage() {
         initialValues: {
             email: '',
             password: '',
+            first_name: '',
+            last_name: ''
         },
         validationSchema: SigninSchema,
         onSubmit: async (value) => {
-            const result = await dispatch(signin(value)).unwrap()
+            const result = await dispatch(signup(value)).unwrap()
             if (result) {
                 navigate(RoutesConstant.flights)
             }
@@ -65,10 +70,13 @@ export default function LoginPage() {
         setShowPassword(prev => !prev)
     }
 
-    const handleNavigate = () => {
+    const handleNavigateToForgetPassword = () => {
         navigate(RoutesConstant.forget_password)
     }
 
+    const handleNavigateToSignUp = () => {
+        navigate(RoutesConstant.sign_up)
+    }
     return (
         <Container className='auth'>
             <Stack className='auth-stack'>
@@ -87,6 +95,34 @@ export default function LoginPage() {
                         onBlur={formik.handleBlur}
                         error={formik.touched.email && Boolean(formik.errors.email)}
                         helperText={formik.touched.email && formik.errors.email}
+                    />
+                    <TextField
+                        variant='outlined'
+                        fullWidth
+                        id="first_name"
+                        name="first_name"
+                        label="first_name"
+                        placeholder='Enter your first_name'
+                        InputLabelProps={{ shrink: true }}
+                        value={formik.values.first_name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.first_name && Boolean(formik.errors.first_name)}
+                        helperText={formik.touched.first_name && formik.errors.first_name}
+                    />
+                    <TextField
+                        variant='outlined'
+                        fullWidth
+                        id="last_name"
+                        name="last_name"
+                        label="last_name"
+                        placeholder='Enter your last_name'
+                        InputLabelProps={{ shrink: true }}
+                        value={formik.values.last_name}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        error={formik.touched.last_name && Boolean(formik.errors.last_name)}
+                        helperText={formik.touched.last_name && formik.errors.last_name}
                     />
                     <TextField
                         variant='outlined'
@@ -112,7 +148,8 @@ export default function LoginPage() {
                             </IconButton>,
                         }}
                     />
-                    <Typography variant="h5" className='forget-password' onClick={handleNavigate}>Forgot password?</Typography>
+                    <Typography variant="h5" className='forget-password' onClick={handleNavigateToForgetPassword}>Forgot password?</Typography>
+                    <Typography variant="h5" className='forget-password' onClick={handleNavigateToSignUp}>Have an account? Log in</Typography>
                     <LoadingButton loading={pending} loadingIndicator={<CircularProgress />} variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
                         SIGN IN
                     </LoadingButton>
