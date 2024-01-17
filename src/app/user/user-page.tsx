@@ -2,8 +2,8 @@ import { useEffect } from 'react'
 
 // ======= store ======= //
 import { useAppDispatch, useAppSelector } from 'src/storeTypes'
-import { getUser } from './store/user.action'
-import { userSelector, userErrorsSelector, userPendingSelector } from './store/user.selector'
+import { getActiveTicketsByUserId, getUser } from './store/user.action'
+import { userTicketsSelector, userTicketsErrorsSelector, userTicketsPendingSelector, userSelector } from './store/user.selector'
 import { sessionSelector } from '../auth/store/auth.selector'
 
 // ======= mui ======= //
@@ -16,12 +16,14 @@ import TicketComponent from './components/ticket.component'
 export default function UserPage() {
     const session = useAppSelector(sessionSelector)
     const user = useAppSelector(userSelector)
-    const user_errors = useAppSelector(userErrorsSelector)
-    const user_pending = useAppSelector(userPendingSelector)
+    const user_tickets = useAppSelector(userTicketsSelector)
+    const user_tickets_errors = useAppSelector(userTicketsErrorsSelector)
+    const user_tickets_pending = useAppSelector(userTicketsPendingSelector)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(getUser(session?.id!))
+        dispatch(getActiveTicketsByUserId(session?.id!))
     }, [])
 
     return (
@@ -29,8 +31,8 @@ export default function UserPage() {
             <Stack className='tickets-search-stack'>
                 <Typography variant='h1' className='main'>{user?.first_name} {user?.last_name}</Typography>
                 <Stack className='users-stack'>
-                    {user_pending ? <CircularProgress sx={{ position: 'absolute' }} /> : null}
-                    {user?.tickets.length ? user?.tickets.map(ticket => {
+                    {user_tickets_pending ? <CircularProgress sx={{ position: 'absolute' }} /> : null}
+                    {user_tickets.length ? user_tickets.map(ticket => {
                         return <TicketComponent key={ticket.id} ticket={ticket} />
                     })
                         :
@@ -38,7 +40,7 @@ export default function UserPage() {
                     }
                 </Stack>
             </Stack>
-            {user_errors ? <AlertMessage errorMessage={user_errors} /> : null}
+            {user_tickets_errors ? <AlertMessage errorMessage={user_tickets_errors} /> : null}
         </Container>
     )
 }

@@ -1,33 +1,40 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUser } from './user.action';
+import { getUser, getActiveTicketsByUserId } from './user.action';
 
 // ======= types ======= //
 import { User } from '../types/User.type';
 import { Device } from '../types/Device.type';
+import { Ticket } from '../types/Ticket.type';
 
 interface UserState {
   user: User | null;
+  tickets: Ticket[];
   devices: Device[];
   pending: {
     user: boolean;
     devices: boolean;
+    tickets: boolean;
   };
   errors: {
     user: null | string;
     devices: null | string;
+    tickets: null | string;
   };
 }
 
 const initialState: UserState = {
   user: null,
+  tickets: [],
   devices: [],
   pending: {
     user: false,
     devices: false,
+    tickets: false,
   },
   errors: {
     user: null,
     devices: null,
+    tickets: null,
   },
 };
 
@@ -49,6 +56,20 @@ export const userSlice = createSlice({
         state.errors.user = payload.response.data.message;
         state.user = null;
         state.pending.user = false;
+      })
+
+      .addCase(getActiveTicketsByUserId.pending, (state) => {
+        state.pending.tickets = true;
+        state.errors.tickets = null;
+      })
+      .addCase(getActiveTicketsByUserId.fulfilled, (state, { payload }) => {
+        state.tickets = payload;
+        state.pending.tickets = false;
+      })
+      .addCase(getActiveTicketsByUserId.rejected, (state, { payload }: any) => {
+        state.errors = payload.response.data.message;
+        state.tickets = [];
+        state.pending.tickets = false;
       });
   },
 });
