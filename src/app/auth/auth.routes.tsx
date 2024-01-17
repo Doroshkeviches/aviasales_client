@@ -14,6 +14,8 @@ const LoginPage = React.lazy(() => import("./login-page"))
 const ForgotPasswordPage = React.lazy(() => import("./forgot-password-page"))
 const ResetPasswordPage = React.lazy(() => import("./reset-password-page"))
 const ResetLinkPage = React.lazy(() => import("./reset-link-page"))
+const SignUpPage = React.lazy(() => import("./signup-page"))
+
 
 const AuthRoutes: FC = () => {
   return (
@@ -22,6 +24,8 @@ const AuthRoutes: FC = () => {
       <Route path={"/forgot-password"} element={<Suspended element={ForgotPasswordPage} />} />
       <Route path={"/reset-link"} element={<Suspended element={ResetLinkPage} />} />
       <Route path={"/reset-password"} element={<Suspended element={ResetPasswordPage} />} />
+      <Route path={"/signup"} element={<Suspended element={SignUpPage} />} />
+
     </Routes>
   );
 };

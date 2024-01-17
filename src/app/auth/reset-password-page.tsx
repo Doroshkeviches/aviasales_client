@@ -17,6 +17,7 @@ import { LoadingButton } from '@mui/lab';
 import AlertMessage from '../../components/alert-message';
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
 import FormWrapper from './components/form-wrapper';
+import { password_regular } from './utils/password-reg';
 
 export default function ResetPasswordPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,13 +32,13 @@ export default function ResetPasswordPage() {
     password: Yup.string()
       .required('Password is required')
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        password_regular,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       ),
     password_confirm: Yup.string()
       .required('Please retype your password.')
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
+        password_regular,
         "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
       )
       .oneOf([Yup.ref('password')], 'Your passwords do not match.')

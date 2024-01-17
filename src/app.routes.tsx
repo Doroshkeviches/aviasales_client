@@ -9,33 +9,15 @@ import { sessionSelector } from "./app/auth/store/auth.selector";
 import { Container } from "@mui/material";
 
 // ======= components ======= //
-import AdminHeaderComp from "./components/admin-header.comp";
-import ManagerHeaderComp from "./components/manager-header.component";
 
 // ======= helpers ======= //
 import { RoutesConstant } from "./constants/RoutesConstants.enum";
-
-// ======= admin private route ======= //
-const AdminPrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
-  const session = useAppSelector(sessionSelector)
-  return session?.role_type === "Admin" ? (
-    <>
-      <AdminHeaderComp />
-      <Suspense fallback={<div />}>
-        <Element />
-      </Suspense>
-    </>
-  ) : (
-    <Navigate to={RoutesConstant.flights} />
-  );
-};
 
 // ======= private route ======= //
 const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
   const session = useAppSelector(sessionSelector)
   return session ? (
     <>
-      <ManagerHeaderComp />
       <Suspense fallback={<div />}>
         <Element />
       </Suspense>
@@ -69,16 +51,15 @@ const AppRoutes = () => {
         <Route path='/admin/auth/*' element={<PublicRoute element={AuthRoutes} />} />
 
         {/* PRIVATE */}
-        <Route path='/admin/flights/*' element={<PrivateRoute element={FlightsRoutes} />} />
-        <Route path='/admin/tickets/*' element={<PrivateRoute element={TicketRoutes} />} />
+        <Route path='/flights/*' element={<PrivateRoute element={FlightsRoutes} />} />
+        <Route path='/tickets/*' element={<PrivateRoute element={TicketRoutes} />} />
         <Route path='/cart/*' element={<PrivateRoute element={CartRoutes} />} />
 
-
         {/* ADMIN PRIVATE */}
-        <Route path='/admin/users/*' element={<AdminPrivateRoute element={UsersRoutes} />} />
+        <Route path='/users/*' element={<PublicRoute element={UsersRoutes} />} />
 
         {/* DEFAULT */}
-        <Route path='/*' element={<Navigate to="/admin/flights" />} />
+        <Route path='/*' element={<Navigate to="/flights" />} />
       </Routes>
     </Container>
   );

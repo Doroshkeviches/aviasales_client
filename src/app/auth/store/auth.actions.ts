@@ -5,14 +5,35 @@ import { tokens } from 'src/app/auth/types/tokens.type';
 import { ResetToken } from '../types/ResetToken.type';
 import { ForgotPassword } from '../types/ForgotPassword.type';
 import { ResetPassword } from '../types/ResetPassword.type';
+import { SignUp } from '../types/SignUp.type';
+import getDeviceId from '../utils/getDeviceId';
 
 const baseUrl = process.env.REACT_APP_API_URL;
 export const signin = createAsyncThunk<tokens, LogIn>(
   'POST/signin',
   async (body, { rejectWithValue }) => {
     try {
-      const device_id = localStorage.getItem('device_id');
-      const response = await axios.post(baseUrl + '/auth/admin/signin', {
+      const device_id = getDeviceId()
+      const response = await axios.post(baseUrl + '/auth/signin', {
+        ...body,
+        device_id,
+      });
+      sessionStorage.setItem('access-token', response.data.access_token);
+      localStorage.setItem('refresh-token', response.data.access_token);
+      return response.data;
+    } catch (error: any) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+
+export const signup = createAsyncThunk<tokens, SignUp>(
+  'POST/signup',
+  async (body, { rejectWithValue }) => {
+    try {
+      const device_id = getDeviceId()
+      const response = await axios.post(baseUrl + '/auth/signup', {
         ...body,
         device_id,
       });
@@ -29,7 +50,7 @@ export const forgotPassword = createAsyncThunk<ResetToken, ForgotPassword>(
   'POST/forgot-password',
   async (body, { rejectWithValue }) => {
     try {
-      const device_id = localStorage.getItem('device_id');
+      const device_id = getDeviceId()
       const response = await axios.post(baseUrl + '/auth/forgot-password', {
         ...body,
         device_id,
@@ -46,7 +67,7 @@ export const resetPassword = createAsyncThunk<tokens, ResetPassword>(
   'POST/reset-password',
   async (body, { rejectWithValue }) => {
     try {
-      const device_id = localStorage.getItem('device_id');
+      const device_id = getDeviceId()
       const reset_token = sessionStorage.getItem('reset-token');
       const response = await axios.post(baseUrl + '/auth/reset-password', {
         ...body,
