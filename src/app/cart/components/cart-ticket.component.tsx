@@ -17,7 +17,7 @@ export default function CartTicketComponent({ ticket }: Props) {
     const dispatch = useAppDispatch()
     const handleAgree = async () => {
         await fetchData(`/ticket/${ticket.id}`, 'delete')
-        dispatch(getTickets)
+        dispatch(getTickets())
         handleClose()
     }
     return (

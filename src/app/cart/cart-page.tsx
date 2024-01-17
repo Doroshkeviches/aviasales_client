@@ -17,7 +17,7 @@ export default function CartPage() {
         dispatch(getTickets())
     }, [])
     const handleCreateOrder = async () => {
-        const res = await fetchData('/ticket/ordered')
+        const res = await fetchData('/ticket/ordered','post')
         if (res.data) {
             dispatch(getTickets())
         }

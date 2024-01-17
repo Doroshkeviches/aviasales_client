@@ -1,5 +1,5 @@
 // ======= utils, types ======= //
-import { Ticket } from '../../tickets/types/Ticket.type'
+import { Ticket } from '../types/Ticket.type'
 import useRepository from 'src/hooks/useRepositiry';
 import transformPrice from 'src/utils/transform-price';
 
