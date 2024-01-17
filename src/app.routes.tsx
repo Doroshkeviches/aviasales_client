@@ -15,21 +15,6 @@ import ManagerHeaderComp from "./components/manager-header.component";
 // ======= helpers ======= //
 import { RoutesConstant } from "./constants/RoutesConstants.enum";
 
-// ======= admin private route ======= //
-const AdminPrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
-  const session = useAppSelector(sessionSelector)
-  return session?.role_type === "Admin" ? (
-    <>
-      <AdminHeaderComp />
-      <Suspense fallback={<div />}>
-        <Element />
-      </Suspense>
-    </>
-  ) : (
-    <Navigate to={RoutesConstant.flights} />
-  );
-};
-
 // ======= private route ======= //
 const PrivateRoute: FC<{ element: any }> = ({ element: Element }) => {
   const session = useAppSelector(sessionSelector)
@@ -68,11 +53,11 @@ const AppRoutes = () => {
         <Route path='/admin/auth/*' element={<PublicRoute element={AuthRoutes} />} />
 
         {/* PRIVATE */}
-        <Route path='/admin/flights/*' element={<PrivateRoute element={FlightsRoutes} />} />
-        <Route path='/admin/tickets/*' element={<PrivateRoute element={TicketRoutes} />} />
+        <Route path='/admin/flights/*' element={<PublicRoute element={FlightsRoutes} />} />
+        <Route path='/admin/tickets/*' element={<PublicRoute element={TicketRoutes} />} />
 
         {/* ADMIN PRIVATE */}
-        <Route path='/admin/users/*' element={<AdminPrivateRoute element={UsersRoutes} />} />
+        <Route path='/admin/users/*' element={<PublicRoute element={UsersRoutes} />} />
 
         {/* DEFAULT */}
         <Route path='/*' element={<Navigate to="/admin/flights" />} />

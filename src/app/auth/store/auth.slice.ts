@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { jwtDecode } from 'jwt-decode';
-import { forgotPassword, resetPassword, signin } from './auth.actions';
+import { forgotPassword, resetPassword, signin, signup } from './auth.actions';
 import { DecodedUser } from '../types/DecodedUser.type';
 
 interface AuthState {
@@ -57,6 +57,21 @@ export const authSlice = createSlice({
         state.errors.session = payload.response.data.message;
         state.pending.session = false;
       })
+
+
+      .addCase(signup.pending, (state) => {
+        state.pending.session = true;
+        state.errors.session = null;
+      })
+      .addCase(signup.fulfilled, (state, { payload }) => {
+        state.session = decode_user_from_token(payload.access_token);
+        state.pending.session = false;
+      })
+      .addCase(signup.rejected, (state, { payload }: any) => {
+        state.errors.session = payload.response.data.message;
+        state.pending.session = false;
+      })
+
 
       .addCase(forgotPassword.pending, (state) => {
         state.pending.reset_token = true;
