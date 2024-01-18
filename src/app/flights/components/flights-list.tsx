@@ -18,6 +18,7 @@ import { useFormik } from 'formik';
 import FormWrapper from 'src/app/auth/components/form-wrapper';
 import useRepository from 'src/hooks/useRepositiry';
 import { LoadingButton } from '@mui/lab';
+import CompletedMarkComponent from './completed-mark.component';
 interface Props {
     flightList: Paths
 }
@@ -67,7 +68,7 @@ export default function FlightsList({ flightList }: Props) {
             <Stack direction='row' className='flights-element-stack'>
                 <Stack className='price-stack' gap={3}>
                     <Typography variant='h1'>{totalPrice}</Typography>
-                    <Button variant='contained' onClick={handleOpen} color='success'>BUY</Button>
+                    <Button variant='contained' onClick={handleOpen} color='success'>Add to cart</Button>
                     <Modal
                         aria-labelledby="spring-modal-title"
                         aria-describedby="spring-modal-description"
@@ -81,13 +82,17 @@ export default function FlightsList({ flightList }: Props) {
                                 left: "50%",
                                 transform: "translate(-50%, -50%)",
                                 width: 300,
-                                height: 300
+                                height: 300,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
                             }}>
-                                {isCreated ? <div>GOOD</div>
+                                {isCreated ? <CompletedMarkComponent />
                                     :
                                     <FormWrapper onSubmit={formik.handleSubmit}>
                                         <TextField
                                             variant='outlined'
+                                            color='secondary'
                                             fullWidth
                                             id="holder_first_name"
                                             name="holder_first_name"
@@ -102,6 +107,7 @@ export default function FlightsList({ flightList }: Props) {
                                         />
                                         <TextField
                                             variant='outlined'
+                                            color='secondary'
                                             fullWidth
                                             id="holder_last_name"
                                             name="holder_last_name"

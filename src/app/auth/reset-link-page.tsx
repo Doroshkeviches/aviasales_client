@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
 // ======= store ======= //
-import { useAppDispatch, useAppSelector } from 'src/storeTypes';
+import { useAppSelector } from 'src/storeTypes';
 import { resetTokenErrorsSelector, resetTokenPendingSelector } from './store/auth.selector';
 
 // ======= mui ======= //
@@ -15,7 +15,6 @@ import FormWrapper from './components/form-wrapper';
 
 export default function ResetLinkPage() {
     const navigate = useNavigate()
-    // const dispatch = useAppDispatch()
     const pending = useAppSelector(resetTokenPendingSelector)
     const errors = useAppSelector(resetTokenErrorsSelector)
     const Link = sessionStorage.getItem('reset-token')

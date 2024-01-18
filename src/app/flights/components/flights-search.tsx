@@ -14,8 +14,9 @@ import { Autocomplete, TextField, Button, FormControl, CircularProgress, Typogra
 
 // ======= components ======= //
 import AlertMessage from 'src/components/alert-message';
+import { searchByOptions } from '../enum/sortedBy.enum';
 
-const searchByOptions = ['Price', 'Time'] // TODO CREATE new file with this array
+
 
 export default function FlightsSearch() {
     const [startDate, setStartDate] = useState<Date | null>(null)
@@ -89,6 +90,7 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={cities}
                             renderInput={(params) => <TextField {...params}
+                                variant='outlined'
                                 label="Departure City"
                                 placeholder='Pick departure city'
                                 InputLabelProps={{ shrink: true }} />}
