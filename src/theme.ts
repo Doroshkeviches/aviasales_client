@@ -349,10 +349,11 @@ export const theme = createTheme({
       // },
       variants: [
         {
-          props: { variant: 'outlined' },
+          props: { className: "black" },
           style: {
+            borderColor: colors.whitesmoke,
             "& label": {
-              color: colors.whitesmoke,
+              color: `${colors.whitesmoke} !important`,
               fontFamily: "Source Sans 3 Regular",
               fontSize: "16px",
             },
@@ -370,10 +371,10 @@ export const theme = createTheme({
             },
             '& .MuiFormLabel-root': {
               fontFamily: Fonts.primary,
-              color: colors.whitesmoke, // Цвет текста label
+              color: `${colors.whitesmoke}`, // Цвет текста label
               borderColor: colors.whitesmoke,
               '& MuiInputLabel-root.Mui-focused': {
-                color: colors.whitesmoke, // Цвет текста label
+                color: `${colors.whitesmoke}`, // Цвет текста label
                 borderColor: colors.whitesmoke,
               }
             },
@@ -528,7 +529,20 @@ export const theme = createTheme({
             }
           }
         },
-      ]
+      ],
+    },
+    
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: colors.whitesmoke,
+          },
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedLabel-notchedOutline": {
+            borderColor: colors.whitesmoke,
+          }
+        }
+      }
     },
     MuiFormControl: {
       styleOverrides: {
@@ -553,11 +567,6 @@ export const theme = createTheme({
           margin: 0,
           paddingTop: 6,
         },
-      },
-    },
-    MuiAutocomplete: {
-      styleOverrides: {
-        root: {},
       },
     },
     MuiButton: {

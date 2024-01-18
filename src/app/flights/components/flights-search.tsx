@@ -90,6 +90,7 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={cities}
                             renderInput={(params) => <TextField {...params}
+                                className='black'
                                 variant='outlined'
                                 label="Departure City"
                                 placeholder='Pick departure city'
@@ -104,6 +105,8 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={cities}
                             renderInput={(params) => <TextField {...params}
+                                className="black"
+                                variant='outlined'
                                 label="Arrival City"
                                 placeholder='Pick arrival city'
                                 InputLabelProps={{ shrink: true }} />}
@@ -114,12 +117,26 @@ export default function FlightsSearch() {
                         />
                         <DatePicker
                             label="Start Date"
+                            className='black'
+                            sx={{
+                                borderColor: 'whitesmoke',
+                                "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: 'whitesmoke',
+                                  },
+                            }}
                             value={startDate}
                             defaultValue={tomorrow.toDate()}
                             onChange={(newValue: Date | null) => setStartDate(newValue)}
                             slotProps={{ textField: { InputLabelProps: { shrink: true }, placeholder: 'Pick start date' } }} />
                         <DatePicker
                             label="Finish date"
+                            className='black'
+                            sx={{
+                                borderColor: 'whitesmoke',
+                                "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                                    borderColor: 'whitesmoke',
+                                  },
+                            }}
                             value={returnDate}
                             onChange={(newValue: Date | null) => setReturnDate(newValue)}
                             slotProps={{ textField: { InputLabelProps: { shrink: true } } }} />
@@ -129,6 +146,7 @@ export default function FlightsSearch() {
                             options={searchByOptions}
                             renderInput={(params) => <TextField {...params}
                                 label="Search by"
+                                className='black'
                                 placeholder='Pick your search parameter'
                                 InputLabelProps={{ shrink: true }} />}
                             value={sortedBy}
