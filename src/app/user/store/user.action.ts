@@ -22,7 +22,7 @@ export const getActiveTicketsByUserId = createAsyncThunk<Ticket[], string>(
   'Get/activeTicketsByUserId',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await repository.get(`/ticket/tickets/:${id}`);
+      const response = await repository.get(`/ticket/tickets/${id}`);
       return response.data;
     } catch (error: any) {
       return rejectWithValue(error);

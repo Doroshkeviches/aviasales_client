@@ -71,7 +71,7 @@ export const userSlice = createSlice({
         state.pending.tickets = false;
       })
       .addCase(getActiveTicketsByUserId.rejected, (state, { payload }: any) => {
-        state.errors = payload.response.data.message;
+        state.errors.tickets = payload.response.data.message;
         state.tickets = [];
         state.pending.tickets = false;
       })
