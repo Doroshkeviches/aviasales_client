@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestHeaders } from "axios";
-import { baseUrl } from "./constants";
+import { baseUrl, client_host } from "./constants";
+import { RoutesConstant } from "./constants/RoutesConstants.enum";
 const { REACT_APP_API_URL } = process.env;
 const repository = axios.create({
   baseURL: REACT_APP_API_URL,
@@ -47,7 +48,7 @@ repository.interceptors.response.use((response) => {
     } catch (refreshError) {
       localStorage.removeItem('refresh-token')
       sessionStorage.removeItem('access-token')
-      window.location.replace('http://localhost:3000/auth/signin')
+      window.location.replace(client_host + RoutesConstant.sign_in)
       return Promise.reject(refreshError);
     }
   } else {

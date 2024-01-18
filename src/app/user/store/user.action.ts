@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
  
 // ======= utils, types ======= //
 import repository from 'src/repository';
-import { User } from '../../user/types/User.type';
+import { User } from '../types/User.type';
 
 export const getUser = createAsyncThunk<User, string>(
   'Get/user',

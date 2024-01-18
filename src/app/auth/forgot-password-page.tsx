@@ -14,6 +14,7 @@ import { Button, CircularProgress, Container, Stack, TextField, Typography } fro
 import AlertMessage from '../../components/alert-message';
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
 import FormWrapper from './components/form-wrapper';
+import { FormError } from './utils/forms-errors.enum';
 
 
 export default function ForgorPasswordPage() {
@@ -23,7 +24,7 @@ export default function ForgorPasswordPage() {
     const errors = useAppSelector(resetTokenErrorsSelector)
 
     const SigninSchema = Yup.object().shape({
-        email: Yup.string().email('Invalid email').required('Required'),
+        email: Yup.string().email(FormError.invalid_email).required(FormError.required),
     });
 
     const formik = useFormik({

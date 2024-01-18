@@ -3,14 +3,12 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { RoutesConstant } from "src/constants/RoutesConstants.enum";
 import { useAppDispatch } from "src/storeTypes";
-import { signout } from "src/utils/signout";
 
 const ClientHeaderComp: FC = () => {
-    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const handleClickSignOut = () => {
-        signout(dispatch)
+        navigate(RoutesConstant.sign_in)
     }
 
     const navToFlights = () => navigate(RoutesConstant.flights)
