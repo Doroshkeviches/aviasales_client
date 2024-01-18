@@ -259,7 +259,7 @@ export const theme = createTheme({
       },
       '&.forget-password': {
         marginLeft: 'auto',
-        cursor: 'pointer',
+        cursor: CursorType.Pointer,
         fontWeight: FontWeight.SemiBold,
         color: colors.whitesmoke,
       },
@@ -379,7 +379,7 @@ export const theme = createTheme({
               }
             },
             '& .MuiOutlinedInput-root': {
-              cursor: 'pointer',
+              cursor: CursorType.Pointer,
               borderColor: colors.whitesmoke, // Цвет рамки
 
               '& fieldset': {
@@ -469,7 +469,7 @@ export const theme = createTheme({
               }
             },
             '& .MuiOutlinedInput-root': {
-              cursor: 'pointer',
+              cursor: CursorType.Pointer,
               borderColor: colors.black, // Цвет рамки
 
               '& fieldset': {
