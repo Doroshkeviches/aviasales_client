@@ -90,6 +90,7 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={cities}
                             renderInput={(params) => <TextField {...params}
+                                variant='outlined'
                                 label="Departure City"
                                 placeholder='Pick departure city'
                                 InputLabelProps={{ shrink: true }} />}
