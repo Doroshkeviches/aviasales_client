@@ -2,12 +2,12 @@ import { useEffect } from 'react'
 
 // ======= store ======= //
 import { useAppDispatch, useAppSelector } from 'src/storeTypes'
-import { getUser, getUserDevices } from './store/user.action'
-import { userSelector, userErrorsSelector, userPendingSelector, devicesSelector } from './store/user.selector'
+import { getActiveTicketsByUserId, getUser, getUserDevices } from './store/user.action'
+import { userTicketsSelector, userTicketsErrorsSelector, userTicketsPendingSelector, devicesSelector, userSelector } from './store/user.selector'
 import { sessionSelector } from '../auth/store/auth.selector'
 
 // ======= mui ======= //
-import { Button, CircularProgress, Container, Stack, Typography } from '@mui/material'
+import { CircularProgress, Container, Stack, Typography } from '@mui/material'
 
 // ======= components ======= //
 import AlertMessage from '../../components/alert-message'
@@ -17,13 +17,15 @@ import UserDeviceComponent from './components/user-device.component'
 export default function UserPage() {
     const session = useAppSelector(sessionSelector)
     const user = useAppSelector(userSelector)
-    const user_errors = useAppSelector(userErrorsSelector)
-    const user_pending = useAppSelector(userPendingSelector)
+    const user_tickets = useAppSelector(userTicketsSelector)
+    const user_tickets_errors = useAppSelector(userTicketsErrorsSelector)
+    const user_tickets_pending = useAppSelector(userTicketsPendingSelector)
     const devices = useAppSelector(devicesSelector)
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(getUser(session?.id!))
+        dispatch(getActiveTicketsByUserId(session?.id!))
         dispatch(getUserDevices())
     }, [])
 
@@ -35,8 +37,8 @@ export default function UserPage() {
                     return <UserDeviceComponent device={device} />
                 })}
                 <Stack className='users-stack'>
-                    {user_pending ? <CircularProgress sx={{ position: 'absolute' }} /> : null}
-                    {user?.tickets.length ? user?.tickets.map(ticket => {
+                    {user_tickets_pending ? <CircularProgress sx={{ position: 'absolute' }} /> : null}
+                    {user_tickets.length ? user_tickets.map(ticket => {
                         return <TicketComponent key={ticket.id} ticket={ticket} />
                     })
                         :
@@ -44,7 +46,7 @@ export default function UserPage() {
                     }
                 </Stack>
             </Stack>
-            {user_errors ? <AlertMessage errorMessage={user_errors} /> : null}
+            {user_tickets_errors ? <AlertMessage errorMessage={user_tickets_errors} /> : null}
         </Container>
     )
 }
