@@ -105,7 +105,7 @@ export default function LoginPage() {
                         fullWidth
                         id="first_name"
                         name="first_name"
-                        label="first_name"
+                        label="First Name"
                         placeholder='Enter your first_name'
                         InputLabelProps={{ shrink: true }}
                         value={formik.values.first_name}
@@ -120,7 +120,7 @@ export default function LoginPage() {
                         fullWidth
                         id="last_name"
                         name="last_name"
-                        label="last_name"
+                        label="Last Name"
                         placeholder='Enter your last_name'
                         InputLabelProps={{ shrink: true }}
                         value={formik.values.last_name}
@@ -154,8 +154,6 @@ export default function LoginPage() {
                             </IconButton>,
                         }}
                     />
-                    {/* <Typography variant="h6" className='forget-password' onClick={handleNavigateToForgetPassword}>Forgot password?</Typography> */}
-                    {/* <Typography variant="h5" className='forget-password' onClick={handleNavigateToSignUp}>Have an account? Log in</Typography> */}
                     <LoadingButton loading={pending} loadingIndicator={<CircularProgress />} variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
                         SIGN UP
                     </LoadingButton>
