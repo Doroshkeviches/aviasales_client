@@ -120,7 +120,7 @@ export default function ResetPasswordPage() {
             }}
           />
           <LoadingButton loading={pending} loadingIndicator={<CircularProgress />} variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
-            SIGN IN
+            RESET PASSWORD
           </LoadingButton>
         </FormWrapper>
         {errors ? <AlertMessage errorMessage={errors} /> : null}
