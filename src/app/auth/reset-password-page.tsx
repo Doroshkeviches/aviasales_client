@@ -18,6 +18,7 @@ import AlertMessage from '../../components/alert-message';
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
 import FormWrapper from './components/form-wrapper';
 import { password_regular } from './utils/password-reg';
+import { FormError } from './utils/forms-errors.enum';
 
 export default function ResetPasswordPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -30,18 +31,19 @@ export default function ResetPasswordPage() {
 
   const SigninSchema = Yup.object().shape({
     password: Yup.string()
-      .required('Password is required')
+      .required(FormError.required_password)
       .matches(
         password_regular,
-        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        FormError.simple_password
       ),
     password_confirm: Yup.string()
-      .required('Please retype your password.')
+      .required(FormError.required_password)
       .matches(
         password_regular,
-        "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+        FormError.simple_password
+
       )
-      .oneOf([Yup.ref('password')], 'Your passwords do not match.')
+      .oneOf([Yup.ref('password')], FormError.passwords_no_match)
   });
 
   const formik = useFormik({
@@ -70,6 +72,7 @@ export default function ResetPasswordPage() {
         <FormWrapper onSubmit={formik.handleSubmit}>
           <Typography variant='h1' className='main'>RESET PASSWORD</Typography>
           <TextField
+            className='whitesmoke'
             fullWidth
             id="password"
             name="password"
@@ -93,6 +96,7 @@ export default function ResetPasswordPage() {
             }}
           />
           <TextField
+            className='whitesmoke'
             fullWidth
             id="password_confirm"
             name="password_confirm"
