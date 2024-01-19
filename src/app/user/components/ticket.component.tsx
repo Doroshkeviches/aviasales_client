@@ -29,7 +29,7 @@ export default function TicketComponent({ ticket }: Props) {
   const session = useAppSelector(sessionSelector)
 
   const handleAgree = async () => {
-    await fetchData(`/ticket/${ticket.id}`, 'delete')
+    await fetchData(`/ticket/ordered/${ticket.id}`, 'delete')
     dispatch(getActiveTicketsByUserId(session?.id!))
     handleClose()
   }
@@ -56,9 +56,15 @@ export default function TicketComponent({ ticket }: Props) {
             STATUS: {ticket.status}
           </Typography>
         </CardContent>
-        <CardActions>
-          <ClearIcon onClick={() => setOpen(true)} />
-        </CardActions>
+        {
+          ticket.status === 'Ordered' ?
+            <CardActions>
+              <ClearIcon onClick={() => setOpen(true)} />
+            </CardActions>
+            :
+            null
+        }
+
       </Card>
       {errors ? <AlertMessage errorMessage={errors} /> : null}
       <Dialog
