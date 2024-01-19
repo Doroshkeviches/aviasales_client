@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { getTickets } from 'src/app/cart/store/cart.actions';
 import { useAppDispatch, useAppSelector } from 'src/storeTypes';
 import { ClearIcon } from '@mui/x-date-pickers';
-import { getActiveTicketsByUserId } from '../store/user.action';
+import { getActiveTicketsByUserId, getUser } from '../store/user.action';
 import { sessionSelector } from 'src/app/auth/store/auth.selector';
 
 interface Props {
@@ -30,7 +30,7 @@ export default function TicketComponent({ ticket }: Props) {
 
   const handleAgree = async () => {
     await fetchData(`/ticket/ordered/${ticket.id}`, 'delete')
-    dispatch(getActiveTicketsByUserId(session?.id!))
+    dispatch(getUser(session?.id!))
     handleClose()
   }
 
