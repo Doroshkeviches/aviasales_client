@@ -40,8 +40,7 @@ export default function TicketComponent({ ticket }: Props) {
           </Typography>
         </CardContent>
       </Card >
-      {errors ? <AlertMessage errorMessage={errors} /> : null
-      }
+      {errors ? <AlertMessage errorMessage={errors} /> : null}
     </>
   )
 }

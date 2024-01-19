@@ -27,7 +27,7 @@ export default function CartPage() {
         <>
         <Stack className='users-stack'>
             {tickets.length ? tickets?.map(it => {
-                return <CartTicketComponent ticket={it} />
+                return <CartTicketComponent key={it.id} ticket={it} />
             })
                 :
                 <Typography variant='h3'>NO TICKETS IN CART</Typography>}
