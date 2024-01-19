@@ -349,9 +349,12 @@ export const theme = createTheme({
       // },
       variants: [
         {
-          props: { className: "black" },
+          props: { className: "whitesmoke" },
           style: {
             borderColor: colors.whitesmoke,
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: colors.whitesmoke,
+            },
             "& label": {
               color: `${colors.whitesmoke} !important`,
               fontFamily: "Source Sans 3 Regular",
@@ -531,7 +534,7 @@ export const theme = createTheme({
         },
       ],
     },
-    
+
     MuiAutocomplete: {
       styleOverrides: {
         root: {
@@ -704,6 +707,9 @@ export const theme = createTheme({
           '&.page-stack': {
             flexDirection: 'column',
             minWidth: '100%',
+            scrollBehavior: "smooth",
+            textRendering: "optimizeSpeed",
+            lineHeight: 1.5
           },
           '&.cities-search-stack': {
             paddingTop: 20,
@@ -876,6 +882,9 @@ export const theme = createTheme({
           '&.ticket-card': {
             backgroundColor: colors.whitesmoke,
             width: '35%',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
             '@media (max-width: 1100px)': {
               width: '60%',
             },
@@ -911,8 +920,8 @@ export const theme = createTheme({
         root: {
           backgroundColor: colors.lightGrey,
           // maxWidth: 'false',
-          // minHeight: '100vh',
-          // minWidth: '100%',
+          minHeight: '100vh',
+          minWidth: '100%',
           // justifyContent: 'center',
           padding: 0,
 

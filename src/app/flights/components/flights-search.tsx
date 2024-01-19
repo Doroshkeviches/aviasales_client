@@ -82,7 +82,6 @@ export default function FlightsSearch() {
             <FormControl error={!!validationErrors} className='form-control-search'>
                 <Typography variant='h1' className='main'>FLIGHTSSALES</Typography>
                 <Typography variant='h3' className='main'>We are here to help you find tickets</Typography>
-
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <Stack className='cities-search-stack'>
                         <Autocomplete
@@ -90,7 +89,7 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={cities}
                             renderInput={(params) => <TextField {...params}
-                                className='black'
+                                className='whitesmoke'
                                 variant='outlined'
                                 label="Departure City"
                                 placeholder='Pick departure city'
@@ -105,7 +104,7 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={cities}
                             renderInput={(params) => <TextField {...params}
-                                className="black"
+                                className="whitesmoke"
                                 variant='outlined'
                                 label="Arrival City"
                                 placeholder='Pick arrival city'
@@ -117,12 +116,12 @@ export default function FlightsSearch() {
                         />
                         <DatePicker
                             label="Start Date"
-                            className='black'
+                            className='whitesmoke'
                             sx={{
                                 borderColor: 'whitesmoke',
                                 "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
                                     borderColor: 'whitesmoke',
-                                  },
+                                },
                             }}
                             value={startDate}
                             defaultValue={tomorrow.toDate()}
@@ -130,12 +129,12 @@ export default function FlightsSearch() {
                             slotProps={{ textField: { InputLabelProps: { shrink: true }, placeholder: 'Pick start date' } }} />
                         <DatePicker
                             label="Finish date"
-                            className='black'
+                            className='whitesmoke'
                             sx={{
                                 borderColor: 'whitesmoke',
                                 "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
                                     borderColor: 'whitesmoke',
-                                  },
+                                },
                             }}
                             value={returnDate}
                             onChange={(newValue: Date | null) => setReturnDate(newValue)}
@@ -146,7 +145,7 @@ export default function FlightsSearch() {
                             options={searchByOptions}
                             renderInput={(params) => <TextField {...params}
                                 label="Search by"
-                                className='black'
+                                className='whitesmoke'
                                 placeholder='Pick your search parameter'
                                 InputLabelProps={{ shrink: true }} />}
                             value={sortedBy}
@@ -156,13 +155,11 @@ export default function FlightsSearch() {
                         />
                     </Stack>
                 </LocalizationProvider>
-
                 <Button
                     onClick={handleGetPath} fullWidth sx={{ marginTop: 4 }}
                     variant='contained' color='primary'
                     className='flight-search'>SEARCH
                 </Button>
-
                 {validationErrors ? <AlertMessage errorMessage={validationErrors} /> : null}
                 {errors_flights ? <AlertMessage errorMessage={errors_flights} /> : null}
                 {errors_city ? <AlertMessage errorMessage={errors_city} /> : null}

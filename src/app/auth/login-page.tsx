@@ -76,6 +76,7 @@ export default function LoginPage() {
                 <FormWrapper onSubmit={formik.handleSubmit}>
                     <Typography variant='h1' className='main'>SIGN IN</Typography>
                     <TextField
+                    className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="email"
@@ -90,6 +91,7 @@ export default function LoginPage() {
                         helperText={formik.touched.email && formik.errors.email}
                     />
                     <TextField
+                    className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="password"

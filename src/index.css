@@ -88,6 +88,13 @@ video {
 	text-decoration: none;
 }
 
+body , #root{
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,

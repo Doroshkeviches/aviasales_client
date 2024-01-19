@@ -48,7 +48,7 @@ export default function ForgorPasswordPage() {
                 <FormWrapper onSubmit={formik.handleSubmit}>
                     <Typography variant='h1' className='main'>ENTER YOUR EMAIL</Typography>
                     <TextField
-                    
+                        className='whitesmoke'
                         fullWidth
                         id="email"
                         name="email"
