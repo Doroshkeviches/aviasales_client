@@ -72,6 +72,7 @@ export default function ResetPasswordPage() {
         <FormWrapper onSubmit={formik.handleSubmit}>
           <Typography variant='h1' className='main'>RESET PASSWORD</Typography>
           <TextField
+            className='whitesmoke'
             fullWidth
             id="password"
             name="password"
@@ -95,6 +96,7 @@ export default function ResetPasswordPage() {
             }}
           />
           <TextField
+            className='whitesmoke'
             fullWidth
             id="password_confirm"
             name="password_confirm"

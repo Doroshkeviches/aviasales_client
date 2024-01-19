@@ -259,7 +259,7 @@ export const theme = createTheme({
       },
       '&.forget-password': {
         marginLeft: 'auto',
-        cursor: 'pointer',
+        cursor: CursorType.Pointer,
         fontWeight: FontWeight.SemiBold,
         color: colors.whitesmoke,
       },
@@ -349,10 +349,14 @@ export const theme = createTheme({
       // },
       variants: [
         {
-          props: { variant: 'outlined' },
+          props: { className: "whitesmoke" },
           style: {
+            borderColor: colors.whitesmoke,
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: colors.whitesmoke,
+            },
             "& label": {
-              color: colors.whitesmoke,
+              color: `${colors.whitesmoke} !important`,
               fontFamily: "Source Sans 3 Regular",
               fontSize: "16px",
             },
@@ -370,15 +374,15 @@ export const theme = createTheme({
             },
             '& .MuiFormLabel-root': {
               fontFamily: Fonts.primary,
-              color: colors.whitesmoke, // Цвет текста label
+              color: `${colors.whitesmoke}`, // Цвет текста label
               borderColor: colors.whitesmoke,
               '& MuiInputLabel-root.Mui-focused': {
-                color: colors.whitesmoke, // Цвет текста label
+                color: `${colors.whitesmoke}`, // Цвет текста label
                 borderColor: colors.whitesmoke,
               }
             },
             '& .MuiOutlinedInput-root': {
-              cursor: 'pointer',
+              cursor: CursorType.Pointer,
               borderColor: colors.whitesmoke, // Цвет рамки
 
               '& fieldset': {
@@ -468,7 +472,7 @@ export const theme = createTheme({
               }
             },
             '& .MuiOutlinedInput-root': {
-              cursor: 'pointer',
+              cursor: CursorType.Pointer,
               borderColor: colors.black, // Цвет рамки
 
               '& fieldset': {
@@ -528,7 +532,20 @@ export const theme = createTheme({
             }
           }
         },
-      ]
+      ],
+    },
+
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: colors.whitesmoke,
+          },
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedLabel-notchedOutline": {
+            borderColor: colors.whitesmoke,
+          }
+        }
+      }
     },
     MuiFormControl: {
       styleOverrides: {
@@ -553,11 +570,6 @@ export const theme = createTheme({
           margin: 0,
           paddingTop: 6,
         },
-      },
-    },
-    MuiAutocomplete: {
-      styleOverrides: {
-        root: {},
       },
     },
     MuiButton: {
@@ -695,6 +707,9 @@ export const theme = createTheme({
           '&.page-stack': {
             flexDirection: 'column',
             minWidth: '100%',
+            scrollBehavior: "smooth",
+            textRendering: "optimizeSpeed",
+            lineHeight: 1.5
           },
           '&.cities-search-stack': {
             paddingTop: 20,
@@ -867,6 +882,9 @@ export const theme = createTheme({
           '&.ticket-card': {
             backgroundColor: colors.whitesmoke,
             width: '35%',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
             '@media (max-width: 1100px)': {
               width: '60%',
             },
@@ -902,8 +920,8 @@ export const theme = createTheme({
         root: {
           backgroundColor: colors.lightGrey,
           // maxWidth: 'false',
-          // minHeight: '100vh',
-          // minWidth: '100%',
+          minHeight: '100vh',
+          minWidth: '100%',
           // justifyContent: 'center',
           padding: 0,
 

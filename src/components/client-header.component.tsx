@@ -17,14 +17,14 @@ const ClientHeaderComp: FC = () => {
 
     return (
         <header style={{ display: 'flex', padding: '10px 60px', justifyContent: 'center' }}>
-            <MenuItem >
-                <Typography variant="h4" onClick={navToFlights} className="navlink">Flights</Typography>
+            <MenuItem onClick={navToFlights}>
+                <Typography variant="h4" className="navlink">Flights</Typography>
             </MenuItem>
-            <MenuItem >
-                <Typography variant="h4" onClick={navToProfile} className="navlink">Profile</Typography>
+            <MenuItem onClick={navToProfile}>
+                <Typography variant="h4" className="navlink">Profile</Typography>
             </MenuItem>
-            <MenuItem >
-                <Typography variant="h4" onClick={navToCart} className="navlink">Cart</Typography>
+            <MenuItem onClick={navToCart}>
+                <Typography variant="h4" className="navlink">Cart</Typography>
             </MenuItem>
             <Button onClick={handleClickSignOut} variant="contained" color="error" sx={{ marginLeft: 'auto' }}>Sign out</Button>
         </header>

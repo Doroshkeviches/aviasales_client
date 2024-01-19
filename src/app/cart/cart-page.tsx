@@ -17,7 +17,7 @@ export default function CartPage() {
         dispatch(getTickets())
     }, [])
     const handleCreateOrder = async () => {
-        const res = await fetchData('/ticket/ordered','post')
+        const res = await fetchData('/ticket/ordered', 'post')
         if (res.data) {
             dispatch(getTickets())
         }
@@ -29,7 +29,7 @@ export default function CartPage() {
             })
                 :
                 <div>NO TICKETS IN CART</div>}
-            <LoadingButton loading={isLoading} onClick={handleCreateOrder}>Create Order</LoadingButton>
+            <LoadingButton loading={isLoading} disabled={!tickets.length} onClick={handleCreateOrder}>Create Order</LoadingButton>
         </>
     )
 }
