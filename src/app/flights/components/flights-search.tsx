@@ -155,14 +155,15 @@ export default function FlightsSearch() {
                         />
                     </Stack>
                 </LocalizationProvider>
+                {validationErrors ? <Typography variant='h5' className='red-text'>{validationErrors}</Typography> : null}
+                {errors_city ? <Typography variant='h5' className='red-text'>{errors_city}</Typography> : null}
+
                 <Button
                     onClick={handleGetPath} fullWidth sx={{ marginTop: 4 }}
                     variant='contained' color='primary'
                     className='flight-search'>SEARCH
                 </Button>
-                {validationErrors ? <AlertMessage errorMessage={validationErrors} /> : null}
                 {errors_flights ? <AlertMessage errorMessage={errors_flights} /> : null}
-                {errors_city ? <AlertMessage errorMessage={errors_city} /> : null}
             </FormControl>
         </>
     )
