@@ -68,6 +68,9 @@ export default function LoginPage() {
     const handleNavigate = () => {
         navigate(RoutesConstant.forget_password)
     }
+    const handleNavigateToSignUp =()=> {
+        navigate(RoutesConstant.sign_up)
+    }
 
     return (
         <Container className='auth'>
@@ -116,6 +119,7 @@ export default function LoginPage() {
                     <LoadingButton loading={pending} loadingIndicator={<CircularProgress />} variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
                         SIGN IN
                     </LoadingButton>
+                    <Typography variant="h5" className='personal-info' onClick={handleNavigateToSignUp}>Don't have an account? Sign Up!</Typography>
                 </FormWrapper>
                 {errors ? <AlertMessage errorMessage={errors} /> : null}
             </Stack>

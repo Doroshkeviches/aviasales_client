@@ -74,14 +74,14 @@ export default function LoginPage() {
         navigate(RoutesConstant.forget_password)
     }
 
-    const handleNavigateToSignUp = () => {
-        navigate(RoutesConstant.sign_up)
+    const handleNavigateToSignIn = () => {
+        navigate(RoutesConstant.sign_in)
     }
     return (
         <Container className='auth'>
             <Stack className='auth-stack'>
                 <FormWrapper onSubmit={formik.handleSubmit}>
-                    <Typography variant='h1' className='main'>SIGN IN</Typography>
+                    <Typography variant='h1' className='main'>SIGN UP</Typography>
                     <TextField
                         variant='outlined'
                         fullWidth
@@ -149,10 +149,11 @@ export default function LoginPage() {
                         }}
                     />
                     <Typography variant="h5" className='forget-password' onClick={handleNavigateToForgetPassword}>Forgot password?</Typography>
-                    <Typography variant="h5" className='forget-password' onClick={handleNavigateToSignUp}>Have an account? Log in</Typography>
+                    {/* <Typography variant="h5" className='forget-password' onClick={handleNavigateToSignUp}>Have an account? Log in</Typography> */}
                     <LoadingButton loading={pending} loadingIndicator={<CircularProgress />} variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
-                        SIGN IN
+                        SIGN UP
                     </LoadingButton>
+                    <Typography variant="h5" className='personal-info' onClick={handleNavigateToSignIn}>Have an account? Sign in!</Typography>
                 </FormWrapper>
                 {errors ? <AlertMessage errorMessage={errors} /> : null}
             </Stack>
