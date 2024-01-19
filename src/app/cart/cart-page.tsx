@@ -5,6 +5,7 @@ import { cartTicketsErrorsSelector, cartTicketsPendingSelector, cartTicketsSelec
 import CartTicketComponent from "./components/cart-ticket.component"
 import { LoadingButton } from "@mui/lab"
 import useRepository from "src/hooks/useRepositiry"
+import { Stack, Typography } from "@mui/material"
 
 export default function CartPage() {
     const dispatch = useAppDispatch()
@@ -24,12 +25,14 @@ export default function CartPage() {
     }
     return (
         <>
+        <Stack className='users-stack'>
             {tickets.length ? tickets?.map(it => {
                 return <CartTicketComponent ticket={it} />
             })
                 :
-                <div>NO TICKETS IN CART</div>}
-            <LoadingButton loading={isLoading} disabled={!tickets.length} onClick={handleCreateOrder}>Create Order</LoadingButton>
+                <Typography variant='h3'>NO TICKETS IN CART</Typography>}
+            <LoadingButton loading={isLoading} variant="contained" disabled={!tickets.length} onClick={handleCreateOrder}>Create Order</LoadingButton>
+        </Stack>
         </>
     )
 }

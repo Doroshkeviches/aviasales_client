@@ -33,7 +33,9 @@ export default function TicketComponent({ ticket }: Props) {
           <Typography variant="h5" paddingTop={'3px'}>
             PRICE: {totalPrice}
           </Typography>
-          <Typography variant="h5" paddingTop={'3px'}>
+          <Typography variant="h5" paddingTop={'3px'} sx={{
+            color: ticket.status === 'Ordered' ? '#002ead' : ticket.status === 'Canceled' ? '#88292F' : '#4bac3a',
+          }}>
             STATUS: {ticket.status}
           </Typography>
         </CardContent>

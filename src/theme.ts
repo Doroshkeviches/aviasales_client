@@ -22,10 +22,10 @@ declare module '@mui/material' {
     ['greenish-blue']?: PaletteColorOptions;
     ['grey']?: PaletteColorOptions;
     ['default']?: PaletteColorOptions;
-    ['black']?: PaletteColorOptions
+    ['black']?: PaletteColorOptions;
   }
-  interface Palette extends CustomPalette { }
-  interface PaletteOptions extends CustomPalette { }
+  interface Palette extends CustomPalette {}
+  interface PaletteOptions extends CustomPalette {}
   interface SwitchPropsColorOverrides {
     'bright-midnight': true;
     default: true;
@@ -256,6 +256,8 @@ export const theme = createTheme({
       lineHeight: '1.3333',
       '&.main': {
         color: colors.whitesmoke,
+        fontWeight: FontWeight.SemiBold,
+        cursor: CursorType.Pointer,
       },
       '&.forget-password': {
         marginLeft: 'auto',
@@ -309,8 +311,8 @@ export const theme = createTheme({
       main: colors.white,
     },
     black: {
-      main: colors.black
-    }
+      main: colors.black,
+    },
   },
   components: {
     MuiTextField: {
@@ -349,21 +351,22 @@ export const theme = createTheme({
       // },
       variants: [
         {
-          props: { className: "whitesmoke" },
+          props: { className: 'whitesmoke' },
           style: {
             borderColor: colors.whitesmoke,
-            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: colors.whitesmoke,
-            },
-            "& label": {
+            '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+              {
+                borderColor: colors.whitesmoke,
+              },
+            '& label': {
               color: `${colors.whitesmoke} !important`,
-              fontFamily: "Source Sans 3 Regular",
-              fontSize: "16px",
+              fontFamily: 'Source Sans 3 Regular',
+              fontSize: '16px',
             },
-            "&:hover label": {
+            '&:hover label': {
               color: colors.whitesmoke,
-              fontFamily: "Source Sans 3 Regular",
-              fontSize: "16px",
+              fontFamily: 'Source Sans 3 Regular',
+              fontSize: '16px',
             },
             '& .MuiSvgIcon-root': {
               color: colors.whitesmoke,
@@ -379,7 +382,7 @@ export const theme = createTheme({
               '& MuiInputLabel-root.Mui-focused': {
                 color: `${colors.whitesmoke}`, // Цвет текста label
                 borderColor: colors.whitesmoke,
-              }
+              },
             },
             '& .MuiOutlinedInput-root': {
               cursor: CursorType.Pointer,
@@ -396,40 +399,40 @@ export const theme = createTheme({
                 cursor: CursorType.Pointer,
                 borderColor: colors.whitesmoke, // Цвет рамки
               },
-              "& fieldset:disabled": {
-                borderColor: "transparent",
+              '& fieldset:disabled': {
+                borderColor: 'transparent',
               },
-              "& .MuiOutlinedInput-root": {
-                "& input": {
-                  padding: "16px",
+              '& .MuiOutlinedInput-root': {
+                '& input': {
+                  padding: '16px',
                 },
-                "& input:disabled": {
+                '& input:disabled': {
                   borderColor: colors.whitesmoke,
                   backgroundColor: colors.whitesmoke,
                 },
 
-                "& fieldset": {
+                '& fieldset': {
                   color: colors.whitesmoke,
-                  fontSize: "10px",
+                  fontSize: '10px',
                 },
-                "& ::placeholder": {
+                '& ::placeholder': {
                   color: colors.whitesmoke,
-                  fontSize: "14px",
+                  fontSize: '14px',
                 },
 
-                "& fieldset:disabled": {
+                '& fieldset:disabled': {
                   borderColor: colors.whitesmoke,
                   color: colors.whitesmoke,
                 },
-                "&:hover fieldset": {
+                '&:hover fieldset': {
                   borderColor: colors.whitesmoke,
                   color: colors.whitesmoke,
-                  borderRadius: "4px",
+                  borderRadius: '4px',
                 },
-                "&.Mui-focused fieldset": {
+                '&.Mui-focused fieldset': {
                   borderColor: colors.whitesmoke,
                   color: colors.whitesmoke,
-                  borderRadius: "4px",
+                  borderRadius: '4px',
                 },
               },
               '& input': {
@@ -439,21 +442,21 @@ export const theme = createTheme({
                 borderColor: colors.whitesmoke,
                 fontFamily: Fonts.primary,
               },
-            }
-          }
+            },
+          },
         },
         {
-          props: { variant: 'outlined', color: "secondary" },
+          props: { variant: 'outlined', color: 'secondary' },
           style: {
-            "& label": {
+            '& label': {
               color: colors.black,
-              fontFamily: "Source Sans 3 Regular",
-              fontSize: "16px",
+              fontFamily: 'Source Sans 3 Regular',
+              fontSize: '16px',
             },
-            "&:hover label": {
+            '&:hover label': {
               color: colors.black,
-              fontFamily: "Source Sans 3 Regular",
-              fontSize: "16px",
+              fontFamily: 'Source Sans 3 Regular',
+              fontSize: '16px',
             },
             '& .MuiSvgIcon-root': {
               color: colors.black,
@@ -469,7 +472,7 @@ export const theme = createTheme({
               '& MuiInputLabel-root.Mui-focused': {
                 color: `${colors.black}`, // Цвет текста label
                 borderColor: colors.black,
-              }
+              },
             },
             '& .MuiOutlinedInput-root': {
               cursor: CursorType.Pointer,
@@ -486,40 +489,40 @@ export const theme = createTheme({
                 cursor: CursorType.Pointer,
                 borderColor: colors.black, // Цвет рамки
               },
-              "& fieldset:disabled": {
-                borderColor: "transparent",
+              '& fieldset:disabled': {
+                borderColor: 'transparent',
               },
-              "& .MuiOutlinedInput-root": {
-                "& input": {
-                  padding: "16px",
+              '& .MuiOutlinedInput-root': {
+                '& input': {
+                  padding: '16px',
                 },
-                "& input:disabled": {
+                '& input:disabled': {
                   borderColor: colors.black,
                   backgroundColor: colors.black,
                 },
 
-                "& fieldset": {
+                '& fieldset': {
                   color: colors.black,
-                  fontSize: "10px",
+                  fontSize: '10px',
                 },
-                "& ::placeholder": {
+                '& ::placeholder': {
                   color: colors.black,
-                  fontSize: "14px",
+                  fontSize: '14px',
                 },
 
-                "& fieldset:disabled": {
+                '& fieldset:disabled': {
                   borderColor: colors.black,
                   color: colors.black,
                 },
-                "&:hover fieldset": {
+                '&:hover fieldset': {
                   borderColor: colors.black,
                   color: colors.black,
-                  borderRadius: "4px",
+                  borderRadius: '4px',
                 },
-                "&.Mui-focused fieldset": {
+                '&.Mui-focused fieldset': {
                   borderColor: colors.black,
                   color: colors.black,
-                  borderRadius: "4px",
+                  borderRadius: '4px',
                 },
               },
               '& input': {
@@ -529,8 +532,8 @@ export const theme = createTheme({
                 borderColor: colors.black,
                 fontFamily: Fonts.primary,
               },
-            }
-          }
+            },
+          },
         },
       ],
     },
@@ -538,14 +541,16 @@ export const theme = createTheme({
     MuiAutocomplete: {
       styleOverrides: {
         root: {
-          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: colors.whitesmoke,
-          },
-          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedLabel-notchedOutline": {
-            borderColor: colors.whitesmoke,
-          }
-        }
-      }
+          '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline':
+            {
+              borderColor: colors.whitesmoke,
+            },
+          '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedLabel-notchedOutline':
+            {
+              borderColor: colors.whitesmoke,
+            },
+        },
+      },
     },
     MuiFormControl: {
       styleOverrides: {
@@ -557,7 +562,7 @@ export const theme = createTheme({
             alignItems: 'center',
             textAlign: 'center',
             backgroundColor: colors.grey,
-            padding: '40px 0px',
+            padding: '20px 0px',
           },
         },
       },
@@ -677,6 +682,32 @@ export const theme = createTheme({
         {
           props: {
             variant: 'contained',
+            color: 'success',
+            className: 'disagreeBtn'
+          },
+          style: {
+            padding: '4px 8px',
+            textTransform: 'capitalize',
+            textAlign: 'center',
+            color: colors.whitesmoke,
+            backgroundColor: colors.primary,
+
+            '&:hover': {
+              backgroundColor: colors.success,
+            },
+
+            '&:active': {
+              backgroundColor: colors.success,
+            },
+            '&:disabled': {
+              color: colors.white,
+              backgroundColor: colors.primaryDisabled,
+            },
+          },
+        },
+        {
+          props: {
+            variant: 'contained',
             color: 'error',
           },
           style: {
@@ -707,9 +738,9 @@ export const theme = createTheme({
           '&.page-stack': {
             flexDirection: 'column',
             minWidth: '100%',
-            scrollBehavior: "smooth",
-            textRendering: "optimizeSpeed",
-            lineHeight: 1.5
+            scrollBehavior: 'smooth',
+            textRendering: 'optimizeSpeed',
+            lineHeight: 1.5,
           },
           '&.cities-search-stack': {
             paddingTop: 20,
@@ -830,9 +861,26 @@ export const theme = createTheme({
             backgroundImage: `url(${image})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
-            padding: '30px 10px 100px',
-            width: '25vw',
+            justifyContent: 'center',
+            padding: '5px 10px 125px',
+            width: '25%',
             minHeight: '45vh',
+
+            '@media (max-width: 1100px)': {
+              width: '35%',
+            },
+            '@media (max-width: 785px)': {
+              width: '45%',
+            },
+            '@media (max-width: 600px)': {
+              width: '55%',
+            },
+            '@media (max-width: 460px)': {
+              width: '65%',
+            },
+            '@media (max-width: 360px)': {
+              width: '75%',
+            },
           },
           '&.users-search-stack': {
             display: 'flex',
@@ -851,7 +899,7 @@ export const theme = createTheme({
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: colors.grey,
-            padding: '40px 0px',
+            padding: '10px 0px',
           },
           '&.user-edit-stack': {
             display: 'flex',
@@ -882,9 +930,9 @@ export const theme = createTheme({
           '&.ticket-card': {
             backgroundColor: colors.whitesmoke,
             width: '35%',
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             '@media (max-width: 1100px)': {
               width: '60%',
             },

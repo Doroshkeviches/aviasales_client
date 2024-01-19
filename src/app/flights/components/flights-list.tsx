@@ -85,19 +85,21 @@ export default function FlightsList({ flightList }: Props) {
                                 height: 300,
                                 display: 'flex',
                                 alignItems: 'center',
-                                justifyContent: 'center'
+                                justifyContent: 'center',
+                                borderRadius: '24px'
                             }}>
                                 {isCreated ? <CompletedMarkComponent />
                                     :
                                     <FormWrapper onSubmit={formik.handleSubmit}>
+                                        <Typography variant='h2'>Credentials</Typography>
                                         <TextField
                                             variant='outlined'
                                             color='secondary'
                                             fullWidth
                                             id="holder_first_name"
                                             name="holder_first_name"
-                                            label="holder_first_name"
-                                            placeholder='Enter your holder_first_name'
+                                            label="Holder First Name"
+                                            placeholder='Enter First Name'
                                             InputLabelProps={{ shrink: true }}
                                             value={formik.values.holder_first_name}
                                             onChange={formik.handleChange}
@@ -111,8 +113,8 @@ export default function FlightsList({ flightList }: Props) {
                                             fullWidth
                                             id="holder_last_name"
                                             name="holder_last_name"
-                                            label="holder_last_name"
-                                            placeholder='Enter your holder_last_name'
+                                            label="Holder Last Name"
+                                            placeholder='Enter Last Name'
                                             InputLabelProps={{ shrink: true }}
                                             value={formik.values.holder_last_name}
                                             onChange={formik.handleChange}
@@ -121,7 +123,7 @@ export default function FlightsList({ flightList }: Props) {
                                             helperText={formik.touched.holder_last_name && formik.errors.holder_last_name}
                                         />
 
-                                        <LoadingButton loading={isLoading} type="submit">create offer</LoadingButton>
+                                        <LoadingButton loading={isLoading} variant='contained' type="submit">create offer</LoadingButton>
                                     </FormWrapper>
                                 }
 

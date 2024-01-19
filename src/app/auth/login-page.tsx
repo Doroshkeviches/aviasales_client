@@ -118,11 +118,11 @@ export default function LoginPage() {
                             </IconButton>,
                         }}
                     />
-                    <Typography variant="h5" className='forget-password' onClick={handleNavigate}>Forgot password?</Typography>
+                    <Typography variant="h6" className='forget-password' onClick={handleNavigate}>Forgot password?</Typography>
                     <LoadingButton loading={pending} loadingIndicator={<CircularProgress />} variant="contained" fullWidth type="submit" sx={{ height: 50 }}>
                         SIGN IN
                     </LoadingButton>
-                    <Typography variant="h5" className='personal-info' onClick={handleNavigateToSignUp}>Don't have an account? Sign Up!</Typography>
+                    <Typography variant="h6" className='main' onClick={handleNavigateToSignUp}>Don't have an account? Sign Up!</Typography>
                 </FormWrapper>
                 {errors ? <AlertMessage errorMessage={errors} /> : null}
             </Stack>
