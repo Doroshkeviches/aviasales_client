@@ -22,9 +22,10 @@ declare module '@mui/material' {
     ['greenish-blue']?: PaletteColorOptions;
     ['grey']?: PaletteColorOptions;
     ['default']?: PaletteColorOptions;
+    ['black']?: PaletteColorOptions
   }
-  interface Palette extends CustomPalette {}
-  interface PaletteOptions extends CustomPalette {}
+  interface Palette extends CustomPalette { }
+  interface PaletteOptions extends CustomPalette { }
   interface SwitchPropsColorOverrides {
     'bright-midnight': true;
     default: true;
@@ -85,7 +86,8 @@ export const colors = {
   primaryPressed: '#041492', // blue
   primaryDisabled: '#6872BD', // light-blue
 
-  secondary: '#F8931F', // orange
+  secondary: '#000000', // orange
+  orange: '#F8931F', // orange
   success: '#0c8d4f', // green
   error: '#F44336',
   successBlend: '#0c8d60', // blend green
@@ -257,7 +259,7 @@ export const theme = createTheme({
       },
       '&.forget-password': {
         marginLeft: 'auto',
-        cursor: 'pointer',
+        cursor: CursorType.Pointer,
         fontWeight: FontWeight.SemiBold,
         color: colors.whitesmoke,
       },
@@ -306,42 +308,244 @@ export const theme = createTheme({
     white: {
       main: colors.white,
     },
+    black: {
+      main: colors.black
+    }
   },
   components: {
     MuiTextField: {
+      // styleOverrides: {
+      //   root: {
+      //     '& .MuiSvgIcon-root': {
+      //       color: colors.whitesmoke,
+      //     },
+      //     '& .MuiInputLabel-root': {
+      //       fontFamily: Fonts.primary,
+      //       color: `${colors.whitesmoke}`, // Цвет текста label
+      //       borderColor: colors.whitesmoke,
+      //     },
+      //     '& .MuiOutlinedInput-root': {
+      //       cursor: 'pointer',
+      //       borderColor: colors.whitesmoke, // Цвет рамки
+
+      //       '& fieldset': {
+      //         borderColor: colors.whitesmoke, // Цвет рамки
+      //       },
+      //       '&:hover fieldset': {
+      //         cursor: CursorType.Pointer,
+      //         borderColor: colors.whitesmoke, // Цвет рамки
+      //       },
+      //       '&.Mui-focused fieldset': {
+      //         borderColor: colors.whitesmoke, // Цвет рамки при фокусе (нажатии)
+      //       },
+      //       '& input': {
+      //         cursor: CursorType.Pointer,
+      //         maxWidth: '100%',
+      //         color: colors.whitesmoke, // Цвет текста внутри input
+      //         fontFamily: Fonts.primary,
+      //       },
+      //     },
+      //   },
+      // },
+      variants: [
+        {
+          props: { className: "whitesmoke" },
+          style: {
+            borderColor: colors.whitesmoke,
+            "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: colors.whitesmoke,
+            },
+            "& label": {
+              color: `${colors.whitesmoke} !important`,
+              fontFamily: "Source Sans 3 Regular",
+              fontSize: "16px",
+            },
+            "&:hover label": {
+              color: colors.whitesmoke,
+              fontFamily: "Source Sans 3 Regular",
+              fontSize: "16px",
+            },
+            '& .MuiSvgIcon-root': {
+              color: colors.whitesmoke,
+            },
+            '& .MuiFocused': {
+              color: colors.whitesmoke,
+              borderColor: colors.whitesmoke,
+            },
+            '& .MuiFormLabel-root': {
+              fontFamily: Fonts.primary,
+              color: `${colors.whitesmoke}`, // Цвет текста label
+              borderColor: colors.whitesmoke,
+              '& MuiInputLabel-root.Mui-focused': {
+                color: `${colors.whitesmoke}`, // Цвет текста label
+                borderColor: colors.whitesmoke,
+              }
+            },
+            '& .MuiOutlinedInput-root': {
+              cursor: CursorType.Pointer,
+              borderColor: colors.whitesmoke, // Цвет рамки
+
+              '& fieldset': {
+                borderColor: colors.whitesmoke, // Цвет рамки
+              },
+              '&:hover fieldset': {
+                cursor: CursorType.Pointer,
+                borderColor: colors.whitesmoke, // Цвет рамки
+              },
+              '&:hover label': {
+                cursor: CursorType.Pointer,
+                borderColor: colors.whitesmoke, // Цвет рамки
+              },
+              "& fieldset:disabled": {
+                borderColor: "transparent",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& input": {
+                  padding: "16px",
+                },
+                "& input:disabled": {
+                  borderColor: colors.whitesmoke,
+                  backgroundColor: colors.whitesmoke,
+                },
+
+                "& fieldset": {
+                  color: colors.whitesmoke,
+                  fontSize: "10px",
+                },
+                "& ::placeholder": {
+                  color: colors.whitesmoke,
+                  fontSize: "14px",
+                },
+
+                "& fieldset:disabled": {
+                  borderColor: colors.whitesmoke,
+                  color: colors.whitesmoke,
+                },
+                "&:hover fieldset": {
+                  borderColor: colors.whitesmoke,
+                  color: colors.whitesmoke,
+                  borderRadius: "4px",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: colors.whitesmoke,
+                  color: colors.whitesmoke,
+                  borderRadius: "4px",
+                },
+              },
+              '& input': {
+                cursor: CursorType.Pointer,
+                maxWidth: '100%',
+                color: colors.whitesmoke, // Цвет текста внутри input
+                borderColor: colors.whitesmoke,
+                fontFamily: Fonts.primary,
+              },
+            }
+          }
+        },
+        {
+          props: { variant: 'outlined', color: "secondary" },
+          style: {
+            "& label": {
+              color: colors.black,
+              fontFamily: "Source Sans 3 Regular",
+              fontSize: "16px",
+            },
+            "&:hover label": {
+              color: colors.black,
+              fontFamily: "Source Sans 3 Regular",
+              fontSize: "16px",
+            },
+            '& .MuiSvgIcon-root': {
+              color: colors.black,
+            },
+            '& .MuiFocused': {
+              color: colors.black,
+              borderColor: colors.black,
+            },
+            '& .MuiFormLabel-root': {
+              fontFamily: Fonts.primary,
+              color: `${colors.black}`, // Цвет текста label
+              borderColor: colors.black,
+              '& MuiInputLabel-root.Mui-focused': {
+                color: `${colors.black}`, // Цвет текста label
+                borderColor: colors.black,
+              }
+            },
+            '& .MuiOutlinedInput-root': {
+              cursor: CursorType.Pointer,
+              borderColor: colors.black, // Цвет рамки
+
+              '& fieldset': {
+                borderColor: colors.black, // Цвет рамки
+              },
+              '&:hover fieldset': {
+                cursor: CursorType.Pointer,
+                borderColor: colors.black, // Цвет рамки
+              },
+              '&:hover label': {
+                cursor: CursorType.Pointer,
+                borderColor: colors.black, // Цвет рамки
+              },
+              "& fieldset:disabled": {
+                borderColor: "transparent",
+              },
+              "& .MuiOutlinedInput-root": {
+                "& input": {
+                  padding: "16px",
+                },
+                "& input:disabled": {
+                  borderColor: colors.black,
+                  backgroundColor: colors.black,
+                },
+
+                "& fieldset": {
+                  color: colors.black,
+                  fontSize: "10px",
+                },
+                "& ::placeholder": {
+                  color: colors.black,
+                  fontSize: "14px",
+                },
+
+                "& fieldset:disabled": {
+                  borderColor: colors.black,
+                  color: colors.black,
+                },
+                "&:hover fieldset": {
+                  borderColor: colors.black,
+                  color: colors.black,
+                  borderRadius: "4px",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: colors.black,
+                  color: colors.black,
+                  borderRadius: "4px",
+                },
+              },
+              '& input': {
+                cursor: CursorType.Pointer,
+                maxWidth: '100%',
+                color: colors.black, // Цвет текста внутри input
+                borderColor: colors.black,
+                fontFamily: Fonts.primary,
+              },
+            }
+          }
+        },
+      ],
+    },
+
+    MuiAutocomplete: {
       styleOverrides: {
         root: {
-          '& .MuiSvgIcon-root': {
-            color: colors.whitesmoke,
-          },
-          '& .MuiInputLabel-root': {
-            fontFamily: Fonts.primary,
-            color: `${colors.whitesmoke} !important`, // Цвет текста label
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
             borderColor: colors.whitesmoke,
           },
-          '& .MuiOutlinedInput-root': {
-            cursor: 'pointer',
-            borderColor: colors.whitesmoke, // Цвет рамки
-
-            '& fieldset': {
-              borderColor: colors.whitesmoke, // Цвет рамки
-            },
-            '&:hover fieldset': {
-              cursor: CursorType.Pointer,
-              borderColor: colors.whitesmoke, // Цвет рамки
-            },
-            '&.Mui-focused fieldset': {
-              borderColor: colors.whitesmoke, // Цвет рамки при фокусе (нажатии)
-            },
-            '& input': {
-              cursor: CursorType.Pointer,
-              maxWidth: '100%',
-              color: colors.whitesmoke, // Цвет текста внутри input
-              fontFamily: Fonts.primary,
-            },
-          },
-        },
-      },
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedLabel-notchedOutline": {
+            borderColor: colors.whitesmoke,
+          }
+        }
+      }
     },
     MuiFormControl: {
       styleOverrides: {
@@ -366,11 +570,6 @@ export const theme = createTheme({
           margin: 0,
           paddingTop: 6,
         },
-      },
-    },
-    MuiAutocomplete: {
-      styleOverrides: {
-        root: {},
       },
     },
     MuiButton: {
@@ -399,15 +598,15 @@ export const theme = createTheme({
             backgroundColor: colors.primary,
 
             '&:hover': {
-              backgroundColor: colors.secondary,
+              backgroundColor: colors.orange,
             },
 
             '&:active': {
-              backgroundColor: colors.secondary,
+              backgroundColor: colors.orange,
             },
             '&:disabled': {
               color: colors.white,
-              backgroundColor: colors.secondary,
+              backgroundColor: colors.orange,
             },
           },
         },
@@ -508,6 +707,9 @@ export const theme = createTheme({
           '&.page-stack': {
             flexDirection: 'column',
             minWidth: '100%',
+            scrollBehavior: "smooth",
+            textRendering: "optimizeSpeed",
+            lineHeight: 1.5
           },
           '&.cities-search-stack': {
             paddingTop: 20,
@@ -680,6 +882,9 @@ export const theme = createTheme({
           '&.ticket-card': {
             backgroundColor: colors.whitesmoke,
             width: '35%',
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
             '@media (max-width: 1100px)': {
               width: '60%',
             },
@@ -715,8 +920,8 @@ export const theme = createTheme({
         root: {
           backgroundColor: colors.lightGrey,
           // maxWidth: 'false',
-          // minHeight: '100vh',
-          // minWidth: '100%',
+          minHeight: '100vh',
+          minWidth: '100%',
           // justifyContent: 'center',
           padding: 0,
 

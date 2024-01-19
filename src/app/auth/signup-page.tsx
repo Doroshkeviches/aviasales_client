@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { signout } from 'src/utils/signout';
+import { signout } from './utils/signout';
 
 // ======= store ======= //
 import { signin, signup } from './store/auth.actions';
@@ -19,6 +19,7 @@ import AlertMessage from '../../components/alert-message';
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
 import FormWrapper from './components/form-wrapper';
 import { password_regular } from './utils/password-reg';
+import { FormError } from './utils/forms-errors.enum';
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -27,6 +28,7 @@ export default function LoginPage() {
     const pending = useAppSelector(sessionPendingSelector)
     const session = useAppSelector(sessionSelector)
     const navigate = useNavigate();
+    const min_name_lenght = 2
 
     useEffect(() => {
         if (session) {
@@ -36,16 +38,16 @@ export default function LoginPage() {
 
     const SigninSchema = Yup.object().shape({
         email: Yup.string()
-            .email('Invalid email')
-            .required('Required'),
+            .email(FormError.invalid_email)
+            .required(FormError.required),
         password: Yup.string()
-            .required('No password provided.')
+            .required(FormError.required_password)
             .matches(
                 password_regular,
-                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+                FormError.simple_password
             ),
-        first_name: Yup.string().required('No first name').min(2),
-        last_name: Yup.string().required('No first name').min(2)
+        first_name: Yup.string().required(FormError.no_first_name).min(min_name_lenght),
+        last_name: Yup.string().required(FormError.no_last_name).min(min_name_lenght)
 
 
     });
@@ -83,6 +85,7 @@ export default function LoginPage() {
                 <FormWrapper onSubmit={formik.handleSubmit}>
                     <Typography variant='h1' className='main'>SIGN UP</Typography>
                     <TextField
+                        className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="email"
@@ -97,6 +100,7 @@ export default function LoginPage() {
                         helperText={formik.touched.email && formik.errors.email}
                     />
                     <TextField
+                        className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="first_name"
@@ -111,6 +115,7 @@ export default function LoginPage() {
                         helperText={formik.touched.first_name && formik.errors.first_name}
                     />
                     <TextField
+                        className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="last_name"
@@ -125,6 +130,7 @@ export default function LoginPage() {
                         helperText={formik.touched.last_name && formik.errors.last_name}
                     />
                     <TextField
+                        className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="password"

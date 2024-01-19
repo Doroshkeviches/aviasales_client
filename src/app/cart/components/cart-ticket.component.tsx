@@ -49,9 +49,6 @@ export default function CartTicketComponent({ ticket }: Props) {
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
             >
-                <DialogTitle id="alert-dialog-title">
-                    {"Use Google's location service?"}
-                </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
                         delete ticket ?

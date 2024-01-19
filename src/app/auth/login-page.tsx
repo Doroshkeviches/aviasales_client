@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { signout } from 'src/utils/signout';
+import { signout } from './utils/signout';
 
 // ======= store ======= //
 import { signin } from './store/auth.actions';
@@ -19,6 +19,7 @@ import AlertMessage from '../../components/alert-message';
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
 import FormWrapper from './components/form-wrapper';
 import { password_regular } from './utils/password-reg';
+import { FormError } from './utils/forms-errors.enum';
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -36,13 +37,13 @@ export default function LoginPage() {
 
     const SigninSchema = Yup.object().shape({
         email: Yup.string()
-            .email('Invalid email')
-            .required('Required'),
+            .email(FormError.invalid_email)
+            .required(FormError.required),
         password: Yup.string()
-            .required('No password provided.')
+            .required(FormError.required_password)
             .matches(
                 password_regular,
-                "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
+                FormError.simple_password
             ),
 
     });
@@ -78,6 +79,7 @@ export default function LoginPage() {
                 <FormWrapper onSubmit={formik.handleSubmit}>
                     <Typography variant='h1' className='main'>SIGN IN</Typography>
                     <TextField
+                    className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="email"
@@ -92,6 +94,7 @@ export default function LoginPage() {
                         helperText={formik.touched.email && formik.errors.email}
                     />
                     <TextField
+                    className='whitesmoke'
                         variant='outlined'
                         fullWidth
                         id="password"
