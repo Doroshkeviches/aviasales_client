@@ -34,7 +34,7 @@ export default function UserPage() {
             <Stack className='tickets-search-stack'>
                 <Typography variant='h1' className='main'>{user?.first_name} {user?.last_name}</Typography>
                 {devices.map(device => {
-                    return <UserDeviceComponent device={device} />
+                    return <UserDeviceComponent key={device.id} device={device} />
                 })}
                 <Stack className='users-stack'>
                     {user_tickets_pending ? <CircularProgress sx={{ position: 'absolute' }} /> : null}
@@ -42,7 +42,7 @@ export default function UserPage() {
                         return <TicketComponent key={ticket.id} ticket={ticket} />
                     })
                         :
-                        <div>No tickets</div>
+                        <Typography variant='h3'>NO TICKETS</Typography>
                     }
                 </Stack>
             </Stack>

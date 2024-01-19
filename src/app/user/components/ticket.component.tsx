@@ -34,6 +34,8 @@ export default function TicketComponent({ ticket }: Props) {
     handleClose()
   }
 
+  const ticketStatusColor = ticket.status === 'Ordered' ? 'blue-text' : ticket.status === 'Canceled' ? 'red-text' : 'green-text'
+
   return (
     <>
       <Card className='ticket-card'>
@@ -50,7 +52,7 @@ export default function TicketComponent({ ticket }: Props) {
           <Typography variant="h5" paddingTop={'3px'}>
             PRICE: {totalPrice}
           </Typography>
-          <Typography variant="h5" paddingTop={'3px'}>
+          <Typography variant="h5" paddingTop={'3px'} className={ticketStatusColor}>
             STATUS: {ticket.status}
           </Typography>
         </CardContent>

@@ -20,6 +20,9 @@ const ClientHeaderComp: FC = () => {
             <MenuItem onClick={navToFlights}>
                 <Typography variant="h4" className="navlink">Flights</Typography>
             </MenuItem>
+            <MenuItem>
+                <Typography variant="h4" className="navlink">Chat</Typography>
+            </MenuItem>
             <MenuItem onClick={navToProfile}>
                 <Typography variant="h4" className="navlink">Profile</Typography>
             </MenuItem>

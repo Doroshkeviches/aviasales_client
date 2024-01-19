@@ -1,6 +1,6 @@
 import React from 'react'
 import { Device } from '../types/Device.type'
-import { Button } from '@mui/material'
+import { Button, Stack, Typography } from '@mui/material'
 import useRepository from 'src/hooks/useRepositiry'
 import { useAppDispatch } from 'src/storeTypes'
 import { getUserDevices } from '../store/user.action'
@@ -18,9 +18,9 @@ export default function UserDeviceComponent({ device }: Props) {
         }
     }
     return (
-        <>
-            <div>{device.id}</div>
-            <Button onClick={handleDeleteSelectDevice}>delete</Button>
-        </>
+        <Stack direction='row' alignItems='center' gap={3}>
+            <Typography variant='h4' className='main'>DEVICE: {device.id}</Typography>
+            <Button variant='contained' color='error' onClick={handleDeleteSelectDevice}>delete</Button>
+        </Stack>
     )
 }
