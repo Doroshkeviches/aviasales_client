@@ -227,6 +227,15 @@ export const theme = createTheme({
       '&.main': {
         color: colors.whitesmoke,
       },
+      '&.blue-text': {
+        color: colors.blue,
+      },
+      '&.red-text': {
+        color: colors.errorBlend,
+      },
+      '&.green-text': {
+        color: colors.successBlend,
+      },
       '&.forget-password': {
         color: colors.whitesmoke,
         cursor: CursorType.Pointer,
@@ -683,7 +692,7 @@ export const theme = createTheme({
           props: {
             variant: 'contained',
             color: 'success',
-            className: 'disagreeBtn'
+            className: 'disagreeBtn',
           },
           style: {
             padding: '4px 8px',
