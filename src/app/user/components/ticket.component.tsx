@@ -74,13 +74,13 @@ export default function TicketComponent({ ticket }: Props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            delete ticket ?
+          <DialogContentText id="alert-dialog-description" sx={{ fontSize: 20 }}>
+            Delete ticket from cart ?
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <LoadingButton loading={isLoading} onClick={handleAgree} autoFocus>
+        <DialogActions sx={{ justifyContent: 'center' }}>
+          <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>Disagree</Button>
+          <LoadingButton loading={isLoading} variant='contained' color='error' onClick={handleAgree} autoFocus>
             Agree
           </LoadingButton>
         </DialogActions>
