@@ -1,9 +1,13 @@
-import React from 'react'
+// ======= utils, types ======= //
 import { Device } from '../types/Device.type'
-import { Button, Stack, Typography } from '@mui/material'
 import useRepository from 'src/hooks/useRepositiry'
+
+// ======= store ======= //
 import { useAppDispatch } from 'src/storeTypes'
 import { getUserDevices } from '../store/user.action'
+
+// ======= mui ======= //
+import { Button, Stack, Typography } from '@mui/material'
 interface Props {
     device: Device
 }

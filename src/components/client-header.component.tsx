@@ -2,7 +2,6 @@ import { Button, MenuItem, Typography } from "@mui/material";
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { RoutesConstant } from "src/constants/RoutesConstants.enum";
-import { useAppDispatch } from "src/storeTypes";
 
 const ClientHeaderComp: FC = () => {
     const navigate = useNavigate()

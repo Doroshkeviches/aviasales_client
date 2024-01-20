@@ -1,11 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
+// ======= types ======= //
 import { LogIn } from 'src/app/auth/types/LogIn.type';
 import { tokens } from 'src/app/auth/types/tokens.type';
 import { ResetToken } from '../types/ResetToken.type';
 import { ForgotPassword } from '../types/ForgotPassword.type';
 import { ResetPassword } from '../types/ResetPassword.type';
 import { SignUp } from '../types/SignUp.type';
+
+// ======= utils ======= //
 import getDeviceId from '../utils/getDeviceId';
 
 const baseUrl = process.env.REACT_APP_API_URL;

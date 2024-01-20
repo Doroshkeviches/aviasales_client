@@ -40,19 +40,19 @@ export default function FlightsSearch() {
     if (pending_city) {
         return <CircularProgress />
     }
-    const validateSeatch = () => { // кастомная валидация , сомнительно но окей
+    const validateSeatch = () => { // кастомная валидация 
         setValidationErrors(null)
         if (!startDate) {
-            setValidationErrors('start date is required')
+            setValidationErrors('Start date is required')
             return false
         }
         if (!from_city || !to_city) {
-            setValidationErrors('start city and end city are required')
+            setValidationErrors('Start city and end city are required')
 
             return false
         }
         if (from_city === to_city) {
-            setValidationErrors('start city cannot be same as end city')
+            setValidationErrors('Start city cannot be same as end city')
             return false
         }
         return true
