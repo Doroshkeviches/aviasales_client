@@ -13,12 +13,15 @@ import { TextField, CircularProgress, IconButton, Stack, Typography, Container }
 import { VisibilityOff, Visibility } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 
-// ======= components ======= //
-import AlertMessage from '../../components/alert-message';
+// ======= utils, helpers ======= //
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
-import FormWrapper from './components/form-wrapper';
 import { password_regular } from './utils/password-reg';
 import { FormError } from './utils/forms-errors.enum';
+
+// ======= components ======= //
+import AlertMessage from '../../components/alert-message';
+import FormWrapper from './components/form-wrapper';
+
 
 export default function ResetPasswordPage() {
   const [showPassword, setShowPassword] = useState(false);

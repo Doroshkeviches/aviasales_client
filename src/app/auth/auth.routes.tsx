@@ -25,7 +25,6 @@ const AuthRoutes: FC = () => {
       <Route path={"/reset-link"} element={<Suspended element={ResetLinkPage} />} />
       <Route path={"/reset-password"} element={<Suspended element={ResetPasswordPage} />} />
       <Route path={"/signup"} element={<Suspended element={SignUpPage} />} />
-
     </Routes>
   );
 };

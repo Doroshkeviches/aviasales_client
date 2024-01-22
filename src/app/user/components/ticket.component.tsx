@@ -1,21 +1,22 @@
+import { useState } from 'react';
+
 // ======= utils, types ======= //
 import { Ticket } from '../types/Ticket.type'
 import useRepository from 'src/hooks/useRepositiry';
 import transformPrice from 'src/utils/transform-price';
 
+// ======= store ======= //
+import { useAppDispatch, useAppSelector } from 'src/storeTypes';
+import { getUser } from '../store/user.action';
+import { sessionSelector } from 'src/app/auth/store/auth.selector';
+
 // ======= mui ======= //
 import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab';
+import { ClearIcon } from '@mui/x-date-pickers';
 
 // ======= components ======= //
 import AlertMessage from 'src/components/alert-message';
-import { LoadingButton } from '@mui/lab';
-import { useState } from 'react';
-import { getTickets } from 'src/app/cart/store/cart.actions';
-import { useAppDispatch, useAppSelector } from 'src/storeTypes';
-import { ClearIcon } from '@mui/x-date-pickers';
-import { getActiveTicketsByUserId, getUser } from '../store/user.action';
-import { sessionSelector } from 'src/app/auth/store/auth.selector';
-
 interface Props {
   ticket: Ticket
 }
@@ -74,13 +75,13 @@ export default function TicketComponent({ ticket }: Props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            delete ticket ?
+          <DialogContentText id="alert-dialog-description" sx={{ fontSize: 20 }}>
+            Delete ticket from cart ?
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <LoadingButton loading={isLoading} onClick={handleAgree} autoFocus>
+        <DialogActions sx={{ justifyContent: 'center' }}>
+          <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>Disagree</Button>
+          <LoadingButton loading={isLoading} variant='contained' color='error' onClick={handleAgree} autoFocus>
             Agree
           </LoadingButton>
         </DialogActions>

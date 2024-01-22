@@ -1,11 +1,18 @@
 import { useEffect } from "react"
+import useRepository from "src/hooks/useRepositiry"
+
+// ======= store ======= //
 import { useAppDispatch, useAppSelector } from "src/storeTypes"
 import { getTickets } from "./store/cart.actions"
 import { cartTicketsErrorsSelector, cartTicketsPendingSelector, cartTicketsSelector } from "./store/cart.selector"
-import CartTicketComponent from "./components/cart-ticket.component"
+
+// ======= mui ======= //
+import { CircularProgress, Stack, Typography } from "@mui/material"
 import { LoadingButton } from "@mui/lab"
-import useRepository from "src/hooks/useRepositiry"
-import { Stack, Typography } from "@mui/material"
+
+// ======= components ======= //
+import CartTicketComponent from "./components/cart-ticket.component"
+import AlertMessage from "src/components/alert-message"
 
 export default function CartPage() {
     const dispatch = useAppDispatch()
@@ -25,14 +32,16 @@ export default function CartPage() {
     }
     return (
         <>
-        <Stack className='users-stack'>
-            {tickets.length ? tickets?.map(it => {
-                return <CartTicketComponent key={it.id} ticket={it} />
-            })
-                :
-                <Typography variant='h3'>NO TICKETS IN CART</Typography>}
-            <LoadingButton loading={isLoading} variant="contained" disabled={!tickets.length} onClick={handleCreateOrder}>Create Order</LoadingButton>
-        </Stack>
+            <Stack className='users-stack'>
+                {cart_pending ? <CircularProgress sx={{ position: 'absolute' }} /> : null}
+                {tickets.length ? tickets?.map(it => {
+                    return <CartTicketComponent key={it.id} ticket={it} />
+                })
+                    :
+                    <Typography variant='h3'>NO TICKETS IN CART</Typography>}
+                <LoadingButton loading={isLoading} variant="contained" disabled={!tickets.length} onClick={handleCreateOrder}>Create Order</LoadingButton>
+            </Stack>
+            {cart_errors ? <AlertMessage errorMessage={cart_errors} /> : null}
         </>
     )
 }

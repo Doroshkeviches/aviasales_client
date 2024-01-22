@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { signout } from './utils/signout';
 
 // ======= store ======= //
-import { signin, signup } from './store/auth.actions';
+import { signup } from './store/auth.actions';
 import { sessionErrorsSelector, sessionPendingSelector, sessionSelector } from './store/auth.selector';
 import { useAppDispatch, useAppSelector } from 'src/storeTypes';
 
@@ -14,12 +13,15 @@ import { CircularProgress, Container, IconButton, Stack, TextField, Typography }
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { LoadingButton } from '@mui/lab';
 
-// ======= components ======= //
-import AlertMessage from '../../components/alert-message';
+// ======= utils, helpers ======= //
+import { signout } from './utils/signout';
 import { RoutesConstant } from 'src/constants/RoutesConstants.enum';
-import FormWrapper from './components/form-wrapper';
 import { password_regular } from './utils/password-reg';
 import { FormError } from './utils/forms-errors.enum';
+
+// ======= components ======= //
+import AlertMessage from '../../components/alert-message';
+import FormWrapper from './components/form-wrapper';
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState<boolean>(false)
@@ -28,7 +30,7 @@ export default function LoginPage() {
     const pending = useAppSelector(sessionPendingSelector)
     const session = useAppSelector(sessionSelector)
     const navigate = useNavigate();
-    const min_name_lenght = 2
+    const min_name_length = 2
 
     useEffect(() => {
         if (session) {
@@ -46,8 +48,8 @@ export default function LoginPage() {
                 password_regular,
                 FormError.simple_password
             ),
-        first_name: Yup.string().required(FormError.no_first_name).min(min_name_lenght),
-        last_name: Yup.string().required(FormError.no_last_name).min(min_name_lenght)
+        first_name: Yup.string().required(FormError.no_first_name).min(min_name_length),
+        last_name: Yup.string().required(FormError.no_last_name).min(min_name_length)
 
 
     });
@@ -70,10 +72,6 @@ export default function LoginPage() {
 
     const handleShowPassword = () => {
         setShowPassword(prev => !prev)
-    }
-
-    const handleNavigateToForgetPassword = () => {
-        navigate(RoutesConstant.forget_password)
     }
 
     const handleNavigateToSignIn = () => {

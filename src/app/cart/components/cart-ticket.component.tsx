@@ -1,11 +1,19 @@
-import { Ticket } from '../types/Ticket.type'
-import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material'
-import ClearIcon from '@mui/icons-material/Clear';
 import { useState } from 'react';
 import useRepository from 'src/hooks/useRepositiry';
+
+// ======= store ======= //
 import { useAppDispatch } from 'src/storeTypes';
 import { getTickets } from '../store/cart.actions';
+
+// ======= utils, types ======= //
+import { Ticket } from '../types/Ticket.type'
+
+// ======= mui ======= //
+import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Typography } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear';
 import { LoadingButton } from '@mui/lab';
+
+// ======= components ======= //
 import AlertMessage from 'src/components/alert-message';
 interface Props {
     ticket: Ticket
@@ -50,11 +58,11 @@ export default function CartTicketComponent({ ticket }: Props) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description" sx={{fontSize: 20}}>
+                    <DialogContentText id="alert-dialog-description" sx={{ fontSize: 20 }}>
                         Delete ticket from cart ?
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions sx={{justifyContent: 'center'}}>
+                <DialogActions sx={{ justifyContent: 'center' }}>
                     <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>Disagree</Button>
                     <LoadingButton loading={isLoading} variant='contained' color='error' onClick={handleAgree} autoFocus>
                         Agree
