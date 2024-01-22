@@ -1,6 +1,9 @@
 import { useEffect } from "react"
 import useRepository from "src/hooks/useRepositiry"
 
+// ======= utils, helpers ======= //
+import { useTranslation } from "react-i18next"
+
 // ======= store ======= //
 import { useAppDispatch, useAppSelector } from "src/storeTypes"
 import { getTickets } from "./store/cart.actions"
@@ -20,6 +23,7 @@ export default function CartPage() {
     const cart_errors = useAppSelector(cartTicketsErrorsSelector)
     const cart_pending = useAppSelector(cartTicketsPendingSelector)
     const [isLoading, errors, data, fetchData] = useRepository()
+    const { t } = useTranslation()
 
     useEffect(() => {
         dispatch(getTickets())
@@ -38,8 +42,8 @@ export default function CartPage() {
                     return <CartTicketComponent key={it.id} ticket={it} />
                 })
                     :
-                    <Typography variant='h3'>NO TICKETS IN CART</Typography>}
-                <LoadingButton loading={isLoading} variant="contained" disabled={!tickets.length} onClick={handleCreateOrder}>Create Order</LoadingButton>
+                    <Typography variant='h3' className="main">{t('cart.no_tickets')}</Typography>}
+                <LoadingButton loading={isLoading} variant="contained" disabled={!tickets.length} onClick={handleCreateOrder}>{t('cart.create_button')}</LoadingButton>
             </Stack>
             {cart_errors ? <AlertMessage errorMessage={cart_errors} /> : null}
         </>

@@ -562,7 +562,6 @@ export const theme = createTheme({
         },
       ],
     },
-
     MuiAutocomplete: {
       styleOverrides: {
         root: {
@@ -580,6 +579,15 @@ export const theme = createTheme({
     MuiFormControl: {
       styleOverrides: {
         root: {
+          '&.lang': {
+            marginRight: 10,
+            marginLeft: 'auto',
+            alignItems: 'center',
+            justifyContent: 'center',
+            '@media (max-width: 520px)': {
+              marginRight: 3,
+            },
+          },
           '&.form-control-search': {
             display: 'flex',
             flexDirection: 'column',
@@ -887,6 +895,7 @@ export const theme = createTheme({
             flexWrap: 'wrap',
             width: '100%',
             padding: '20px 0',
+            backgroundColor: colors.grey,
             gap: 20,
           },
           '&.auth-stack': {
@@ -944,6 +953,19 @@ export const theme = createTheme({
             textAlign: 'center',
             backgroundColor: colors.grey,
             padding: 20,
+          },
+          '&.create-order-stack': {
+            position: 'absolute',
+            backgroundColor: colors.whitesmoke,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 300,
+            height: 300,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '24px',
           },
         },
       },
@@ -1031,17 +1053,65 @@ export const theme = createTheme({
           minWidth: '20%',
           '& .MuiSelect-select': {
             padding: '4px 8px',
+
+            '@media (max-width: 520px)': {
+              padding: '4px 6px',
+              fontSize: FontSize.H6,
+            },
           },
           '@media (max-width: 1000px)': {},
-          '@media (max-width: 460px)': {},
           '@media (max-width: 360px)': {},
         },
       },
     },
     MuiMenuItem: {
       styleOverrides: {
-        root: {},
+        root: {
+          '&.MuiMenuItem-root': {
+            '@media (max-width: 620px)': {
+              paddingLeft: 2,
+              paddingRight: 8,
+              minHeight: 0,
+            },
+            '@media (max-width: 460px)': {
+              paddingRight: 6,
+            },
+          },
+        },
       },
     },
+    // MuiFormControlLabel: {
+    //   variants: [
+    //     {
+    //       props: {
+    //         className: 'lang',
+    //       },
+    //       style: {
+    //         '& .MuiTypography-root ': {
+    //           fontWeight: FontWeight.SemiBold,
+    //           color: colors.black,
+    //           fontSize: FontSize.H4,
+    //           lineHeight: '1.428571',
+    //           '@media (max-width: 785px)': {
+    //             lineHeight: '1.5',
+    //             fontSize: FontSize.H5,
+    //           },
+    //           '@media (max-width: 520px)': {
+    //             lineHeight: '1.3',
+    //             fontSize: FontSize.H6,
+    //           },
+    //           '@media (max-width: 460px)': {
+    //             lineHeight: '1.2',
+    //             fontSize: FontSize.H6,
+    //           },
+    //           '@media (max-width: 360px)': {
+    //             lineHeight: '1',
+    //             fontSize: FontSize.H6,
+    //           },
+    //         },
+    //       },
+    //     },
+    //   ],
+    // },
   },
 });
