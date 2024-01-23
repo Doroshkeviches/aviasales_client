@@ -12,13 +12,14 @@ import { SignUp } from '../types/SignUp.type';
 // ======= utils ======= //
 import getDeviceId from '../utils/getDeviceId';
 
-const baseUrl = process.env.REACT_APP_API_URL;
+const { REACT_APP_BASE_URL } = process.env;
+
 export const signin = createAsyncThunk<tokens, LogIn>(
   'POST/signin',
   async (body, { rejectWithValue }) => {
     try {
       const device_id = getDeviceId()
-      const response = await axios.post(baseUrl + '/auth/signin', {
+      const response = await axios.post(REACT_APP_BASE_URL + '/auth/signin', {
         ...body,
         device_id,
       });
@@ -37,7 +38,7 @@ export const signup = createAsyncThunk<tokens, SignUp>(
   async (body, { rejectWithValue }) => {
     try {
       const device_id = getDeviceId()
-      const response = await axios.post(baseUrl + '/auth/signup', {
+      const response = await axios.post(REACT_APP_BASE_URL + '/auth/signup', {
         ...body,
         device_id,
       });
@@ -55,7 +56,7 @@ export const forgotPassword = createAsyncThunk<ResetToken, ForgotPassword>(
   async (body, { rejectWithValue }) => {
     try {
       const device_id = getDeviceId()
-      const response = await axios.post(baseUrl + '/auth/forgot-password', {
+      const response = await axios.post(REACT_APP_BASE_URL + '/auth/forgot-password', {
         ...body,
         device_id,
       });
@@ -73,7 +74,7 @@ export const resetPassword = createAsyncThunk<tokens, ResetPassword>(
     try {
       const device_id = getDeviceId()
       const reset_token = sessionStorage.getItem('reset-token');
-      const response = await axios.post(baseUrl + '/auth/reset-password', {
+      const response = await axios.post(REACT_APP_BASE_URL + '/auth/reset-password', {
         ...body,
         device_id,
         reset_token,
