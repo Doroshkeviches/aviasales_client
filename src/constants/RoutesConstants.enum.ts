@@ -2,6 +2,7 @@ export enum RoutesConstant {
     flights = "/flights",
     cart = "/cart",
     user = "/user",
+    chat = "/chat",
     forget_password = "/auth/forgot-password",
     reset_link = "/auth/reset-link",
     reset_password = "/auth/reset-password",
