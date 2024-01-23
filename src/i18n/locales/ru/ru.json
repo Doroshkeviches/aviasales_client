@@ -1,0 +1,60 @@
+{
+  "header": {
+    "flights": "Полеты",
+    "chat": "Чат",
+    "profile": "Профиль",
+    "cart": "Корзина",
+    "lang": "Язык",
+    "signout": "Выйти"
+  },
+  "flights": {
+    "title": "Мы поможем вам с поиском авиабилетов",
+    "departure_city": "Вылет из",
+    "arrival_city": "Прилет в",
+    "departure_city_placeholder": "Выберите город вылета",
+    "arrival_city_placeholder": "Выберите город прилета",
+    "start_date": "Дата вылета",
+    "start_date_placeholder": "Выберите дату вылета",
+    "finish_date": "Дата прилета",
+    "search_by": "Поиск по",
+    "search_placeholder": "Выберите параметры поиска",
+    "price": "Цена",
+    "time": "Время",
+    "search_button": "Найти",
+    "add_button": "Добавить",
+    "holder_fn": "Имя пассажира",
+    "holder_fn_placeholder": "Введите имя пассажира",
+    "holder_ln": "Фамилия пассажира",
+    "holder_ln_placeholder": "Введите фамилию пассажира",
+    "create_button": "Добавить билет",
+    "creds": "Данные"
+  },
+  "searchOptions": {
+    "price": "Цена",
+    "time": "Время"
+  },
+  "profile": {
+    "device": "Устройство",
+    "delete_button": "Удалить",
+    "from": "Откуда",
+    "to": "Куда",
+    "price": "Цена",
+    "status": "Статус",
+    "no_tickets": "Нет актуальных билетов",
+    "dialog_title": "Вернуть купленный билет?",
+    "dialog_back": "Назад",
+    "dialog_delete": "Вернуть"
+
+  },
+  "cart": {
+    "no_tickets": "В корзине нет билетов",
+    "create_button": "Создать заказ",
+    "from": "Откуда",
+    "to": "Куда",
+    "price": "Цена",
+    "status": "Статус",
+    "dialog_title": "Удалить билет из корзины?",
+    "dialog_back": "Назад",
+    "dialog_delete": "Удалить"
+  }
+}

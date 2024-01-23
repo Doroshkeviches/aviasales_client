@@ -171,7 +171,7 @@ export const theme = createTheme({
         lineHeight: '1.2',
         fontSize: FontSize.H4,
       },
-      '@media (max-width: 360px)': {
+      '@media (max-width: 380px)': {
         lineHeight: '1',
         fontSize: FontSize.H6,
       },
@@ -195,7 +195,7 @@ export const theme = createTheme({
         lineHeight: '1.2',
         fontSize: FontSize.H5,
       },
-      '@media (max-width: 360px)': {
+      '@media (max-width: 380px)': {
         lineHeight: '1',
         fontSize: FontSize.H6,
       },
@@ -224,9 +224,9 @@ export const theme = createTheme({
         lineHeight: '1.2',
         fontSize: FontSize.H6,
       },
-      '@media (max-width: 360px)': {
+      '@media (max-width: 380px)': {
         lineHeight: '1',
-        fontSize: FontSize.H6,
+        fontSize: FontSize.T6,
       },
       '&.main': {
         color: colors.whitesmoke,
@@ -562,7 +562,6 @@ export const theme = createTheme({
         },
       ],
     },
-
     MuiAutocomplete: {
       styleOverrides: {
         root: {
@@ -580,6 +579,15 @@ export const theme = createTheme({
     MuiFormControl: {
       styleOverrides: {
         root: {
+          '&.lang': {
+            marginRight: 10,
+            marginLeft: 'auto',
+            alignItems: 'center',
+            justifyContent: 'center',
+            '@media (max-width: 520px)': {
+              marginRight: 3,
+            },
+          },
           '&.form-control-search': {
             display: 'flex',
             flexDirection: 'column',
@@ -687,7 +695,7 @@ export const theme = createTheme({
               lineHeight: '1.2',
               fontSize: 12,
             },
-            '@media (max-width: 360px)': {
+            '@media (max-width: 380px)': {
               padding: '3px 6px',
               lineHeight: '1',
               fontSize: 10,
@@ -736,7 +744,7 @@ export const theme = createTheme({
             color: 'error',
           },
           style: {
-            padding: '4px 8px',
+            padding: '1px 8px',
             textTransform: 'capitalize',
             textAlign: 'center',
             color: colors.whitesmoke,
@@ -745,11 +753,15 @@ export const theme = createTheme({
             '@media (max-width: 785px)': {
               lineHeight: '1.2',
               fontSize: FontSize.H5,
-              padding: '2px 6px',
+              padding: '5px 6px',
             },
             '@media (max-width: 520px)': {
               fontSize: FontSize.H6,
-              padding: '2px 5px',
+              padding: '6px 4px',
+            },
+            '@media (max-width: 380px)': {
+              fontSize: FontSize.T6,
+              padding: '8px 4px',
             },
             '&:hover': {
               backgroundColor: colors.error,
@@ -815,7 +827,7 @@ export const theme = createTheme({
               padding: 5,
               width: '85%',
             },
-            '@media (max-width: 360px)': {
+            '@media (max-width: 380px)': {
               padding: 2,
               width: '95%',
             },
@@ -887,6 +899,7 @@ export const theme = createTheme({
             flexWrap: 'wrap',
             width: '100%',
             padding: '20px 0',
+            backgroundColor: colors.grey,
             gap: 20,
           },
           '&.auth-stack': {
@@ -912,7 +925,7 @@ export const theme = createTheme({
             '@media (max-width: 460px)': {
               width: '65%',
             },
-            '@media (max-width: 360px)': {
+            '@media (max-width: 380px)': {
               width: '75%',
             },
           },
@@ -944,6 +957,19 @@ export const theme = createTheme({
             textAlign: 'center',
             backgroundColor: colors.grey,
             padding: 20,
+          },
+          '&.create-order-stack': {
+            position: 'absolute',
+            backgroundColor: colors.whitesmoke,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 300,
+            height: 300,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '24px',
           },
         },
       },
@@ -1029,18 +1055,52 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           minWidth: '20%',
+          
           '& .MuiSelect-select': {
-            padding: '4px 8px',
+            padding: '4px 6px',
+            
+            '@media (max-width: 520px)': {
+              fontSize: FontSize.H6,
+            },
+            '@media (max-width: 380px)': {
+              fontSize: FontSize.T6,
+            },
           },
-          '@media (max-width: 1000px)': {},
-          '@media (max-width: 460px)': {},
-          '@media (max-width: 360px)': {},
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: colors.lightGrey,
+          padding: '10px 40px',
+
+          '@media (max-width: 620px)': {
+            padding: '5px 20px',
+          },
+          '@media (max-width: 460px)': {
+            padding: '0px 10px',
+          },
+          '@media (max-width: 420px)': {
+            padding: '0px 2px',
+          },
         },
       },
     },
     MuiMenuItem: {
       styleOverrides: {
-        root: {},
+        root: {
+          '&.MuiMenuItem-root': {
+            '@media (max-width: 620px)': {
+              paddingLeft: 2,
+              paddingRight: 10,
+              minHeight: 0,
+            },
+            '@media (max-width: 460px)': {
+              paddingRight: 6,
+            },
+          },
+        },
       },
     },
   },

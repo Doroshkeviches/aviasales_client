@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Ticket } from '../types/Ticket.type'
 import useRepository from 'src/hooks/useRepositiry';
 import transformPrice from 'src/utils/transform-price';
+import { useTranslation } from 'react-i18next';
 
 // ======= store ======= //
 import { useAppDispatch, useAppSelector } from 'src/storeTypes';
@@ -17,6 +18,7 @@ import { ClearIcon } from '@mui/x-date-pickers';
 
 // ======= components ======= //
 import AlertMessage from 'src/components/alert-message';
+
 interface Props {
   ticket: Ticket
 }
@@ -28,6 +30,7 @@ export default function TicketComponent({ ticket }: Props) {
   const [isLoading, errors, data, fetchData] = useRepository()
   const dispatch = useAppDispatch()
   const session = useAppSelector(sessionSelector)
+  const { t } = useTranslation()
 
   const handleAgree = async () => {
     await fetchData(`/ticket/ordered/${ticket.id}`, 'delete')
@@ -45,16 +48,16 @@ export default function TicketComponent({ ticket }: Props) {
             {ticket.holder_first_name} {ticket.holder_last_name}
           </Typography>
           <Typography variant='h5' paddingTop={'3px'}>
-            FROM: {ticket.flight.from_city.title}
+            {t('profile.from')}: {ticket.flight.from_city.title}
           </Typography>
           <Typography variant='h5' paddingTop={'3px'}>
-            TO: {ticket.flight.to_city.title}
+            {t('profile.to')}: {ticket.flight.to_city.title}
           </Typography>
           <Typography variant="h5" paddingTop={'3px'}>
-            PRICE: {totalPrice}
+            {t('profile.price')}: {totalPrice}
           </Typography>
           <Typography variant="h5" paddingTop={'3px'} className={ticketStatusColor}>
-            STATUS: {ticket.status}
+            {t('profile.status')}: {ticket.status}
           </Typography>
         </CardContent>
         {
@@ -76,13 +79,13 @@ export default function TicketComponent({ ticket }: Props) {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description" sx={{ fontSize: 20 }}>
-            Delete ticket from cart ?
+            {t('profile.dialog_title')}
           </DialogContentText>
         </DialogContent>
         <DialogActions sx={{ justifyContent: 'center' }}>
-          <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>Disagree</Button>
+          <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>{t('profile.dialog_back')}</Button>
           <LoadingButton loading={isLoading} variant='contained' color='error' onClick={handleAgree} autoFocus>
-            Agree
+            {t('profile.dialog_delete')}
           </LoadingButton>
         </DialogActions>
       </Dialog>
