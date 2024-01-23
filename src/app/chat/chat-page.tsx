@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { io } from 'socket.io-client';
 import { useAppSelector } from 'src/storeTypes';
 import { sessionSelector } from '../auth/store/auth.selector';
+import { Button, Stack, TextField } from '@mui/material';
+import MessageAdmin from './components/message-admin';
+import MessageClient from './components/message-client';
+// import { messages } from './mock-messages';
 
 const URL = 'http://localhost:4444';
 const token = localStorage.getItem('refresh-token')
@@ -10,6 +14,7 @@ const socket = io(URL, {
         Authorization: `Bearer ${token}`
     }
 });
+
 export default function ChatPage() {
     const [messages, setMessages] = useState<any[]>([])
     const session = useAppSelector(sessionSelector)
@@ -28,10 +33,22 @@ export default function ChatPage() {
         })
     }, [])
     return (
-        <div>
-            {messages.map(mes => {
-                return <div>{mes.message}</div>
-            })}
-        </div>
+        <Stack className='chat-stack'>
+            <Stack className='messages-stack'>
+                {messages.map(mes => {
+                    return mes.id === 'Admin' ? <MessageAdmin {...mes} /> : <MessageClient {...mes} />
+                })}
+            </Stack>
+            <Stack direction={'row'} sx={{ margin: 'auto 0 10px', width: '100%', position: 'static' }}>
+                <TextField
+                    fullWidth
+                    className='whitesmoke'
+                    id="message"
+                    name="message"
+                    placeholder='Enter your message'
+                />
+                <Button variant='contained' color='primary' sx={{ width: '20%' }}>Send</Button>
+            </Stack>
+        </Stack>
     )
 }
