@@ -1,20 +1,23 @@
+import { useState } from 'react';
+
 // ======= utils, types ======= //
 import { Ticket } from '../types/Ticket.type'
 import useRepository from 'src/hooks/useRepositiry';
 import transformPrice from 'src/utils/transform-price';
+import { useTranslation } from 'react-i18next';
+
+// ======= store ======= //
+import { useAppDispatch, useAppSelector } from 'src/storeTypes';
+import { getUser } from '../store/user.action';
+import { sessionSelector } from 'src/app/auth/store/auth.selector';
 
 // ======= mui ======= //
 import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Typography } from '@mui/material'
+import { LoadingButton } from '@mui/lab';
+import { ClearIcon } from '@mui/x-date-pickers';
 
 // ======= components ======= //
 import AlertMessage from 'src/components/alert-message';
-import { LoadingButton } from '@mui/lab';
-import { useState } from 'react';
-import { getTickets } from 'src/app/cart/store/cart.actions';
-import { useAppDispatch, useAppSelector } from 'src/storeTypes';
-import { ClearIcon } from '@mui/x-date-pickers';
-import { getActiveTicketsByUserId } from '../store/user.action';
-import { sessionSelector } from 'src/app/auth/store/auth.selector';
 
 interface Props {
   ticket: Ticket
@@ -27,10 +30,11 @@ export default function TicketComponent({ ticket }: Props) {
   const [isLoading, errors, data, fetchData] = useRepository()
   const dispatch = useAppDispatch()
   const session = useAppSelector(sessionSelector)
+  const { t } = useTranslation()
 
   const handleAgree = async () => {
     await fetchData(`/ticket/ordered/${ticket.id}`, 'delete')
-    dispatch(getActiveTicketsByUserId(session?.id!))
+    dispatch(getUser(session?.id!))
     handleClose()
   }
 
@@ -44,16 +48,16 @@ export default function TicketComponent({ ticket }: Props) {
             {ticket.holder_first_name} {ticket.holder_last_name}
           </Typography>
           <Typography variant='h5' paddingTop={'3px'}>
-            FROM: {ticket.flight.from_city.title}
+            {t('profile.from')}: {ticket.flight.from_city.title}
           </Typography>
           <Typography variant='h5' paddingTop={'3px'}>
-            TO: {ticket.flight.to_city.title}
+            {t('profile.to')}: {ticket.flight.to_city.title}
           </Typography>
           <Typography variant="h5" paddingTop={'3px'}>
-            PRICE: {totalPrice}
+            {t('profile.price')}: {totalPrice}
           </Typography>
           <Typography variant="h5" paddingTop={'3px'} className={ticketStatusColor}>
-            STATUS: {ticket.status}
+            {t('profile.status')}: {ticket.status}
           </Typography>
         </CardContent>
         {
@@ -74,14 +78,14 @@ export default function TicketComponent({ ticket }: Props) {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            delete ticket ?
+          <DialogContentText id="alert-dialog-description" sx={{ fontSize: 20 }}>
+            {t('profile.dialog_title')}
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <LoadingButton loading={isLoading} onClick={handleAgree} autoFocus>
-            Agree
+        <DialogActions sx={{ justifyContent: 'center' }}>
+          <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>{t('profile.dialog_back')}</Button>
+          <LoadingButton loading={isLoading} variant='contained' color='error' onClick={handleAgree} autoFocus>
+            {t('profile.dialog_delete')}
           </LoadingButton>
         </DialogActions>
       </Dialog>

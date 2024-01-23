@@ -1,0 +1,57 @@
+{
+  "header": {
+    "flights": "Flights",
+    "chat": "Chat",
+    "profile": "Profile",
+    "cart": "Cart",
+    "lang": "Lang",
+    "signout": "Sign Out"
+  },
+  "flights": {
+    "title": "We are here to help you find tickets",
+    "departure_city": "Departure City",
+    "arrival_city": "Arrival City",
+    "departure_city_placeholder": "Pick departure city",
+    "arrival_city_placeholder": "Pick arrival city",
+    "start_date": "Start Date",
+    "start_date_placeholder": "Pick start date",
+    "finish_date": "Finish Date",
+    "search_by": "Search By",
+    "search_placeholder": "Pick your search parameter",
+    "search_button": "Search",
+    "add_button": "Add to cart",
+    "holder_fn": "Holder First Name",
+    "holder_fn_placeholder": "Enter First Name",
+    "holder_ln": "Holder Last Name",
+    "holder_ln_placeholder": "Enter Last Name",
+    "create_button": "Create Order",
+    "creds": "Credentials"
+  },
+  "searchOptions": {
+    "price": "Price",
+    "time": "Time"
+  },
+  "profile": {
+    "device": "Device",
+    "delete_button": "Delete",
+    "from": "From",
+    "to": "To",
+    "price": "Price",
+    "status": "Status",
+    "no_tickets": "No Tickets",
+    "dialog_title": "Cancel the purchaced ticket?",
+    "dialog_back": "Back",
+    "dialog_delete": "Cancel"
+  },
+  "cart":{
+    "no_tickets": "No Tickets In Cart",
+    "create_button": "Create Order",
+    "from": "From",
+    "to": "To",
+    "price": "Price",
+    "status": "Status",
+    "dialog_title": "Delete ticket from cart?",
+    "dialog_back": "Back",
+    "dialog_delete": "Delete"
+  }
+}

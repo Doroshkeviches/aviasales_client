@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
 
+// ======= utils, helpers ======= //
+import { useTranslation } from 'react-i18next'
+
 // ======= store ======= //
 import { useAppDispatch, useAppSelector } from 'src/storeTypes'
 import { getUser, getUserDevices } from './store/user.action'
@@ -21,6 +24,7 @@ export default function UserPage() {
     const user_pending = useAppSelector(userPendingSelector)
     const devices = useAppSelector(devicesSelector)
     const dispatch = useAppDispatch()
+    const { t } = useTranslation()
 
     useEffect(() => {
         dispatch(getUser(session?.id!))
@@ -40,7 +44,7 @@ export default function UserPage() {
                         return <TicketComponent key={ticket.id} ticket={ticket} />
                     })
                         :
-                        <Typography variant='h3'>NO TICKETS</Typography>
+                        <Typography variant='h3' className='main'>{t('profile.no_tickets')}</Typography>
                     }
                 </Stack>
             </Stack>

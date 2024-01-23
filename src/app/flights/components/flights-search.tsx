@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import dayjs from 'dayjs';
 
+// ======= utils, helpers ======= //
+import { useTranslation } from 'react-i18next';
+
 // ======= store ======= //
 import { useAppDispatch, useAppSelector } from 'src/storeTypes'
 import { getCities, getFlights } from '../store/flghts.action'
@@ -17,7 +20,6 @@ import AlertMessage from 'src/components/alert-message';
 import { searchByOptions } from '../enum/sortedBy.enum';
 
 
-
 export default function FlightsSearch() {
     const [startDate, setStartDate] = useState<Date | null>(null)
     const [returnDate, setReturnDate] = useState<Date | null>(null)
@@ -32,6 +34,7 @@ export default function FlightsSearch() {
     const cities = useAppSelector(citiesSelector)
     const errors_flights = useAppSelector(flightsErrorsSelector)
     const tomorrow = dayjs().add(1, 'day');
+    const { t } = useTranslation();
 
     useEffect(() => {
         dispatch(getCities())
@@ -40,19 +43,19 @@ export default function FlightsSearch() {
     if (pending_city) {
         return <CircularProgress />
     }
-    const validateSeatch = () => { // кастомная валидация , сомнительно но окей
+    const validateSeatch = () => { // кастомная валидация 
         setValidationErrors(null)
         if (!startDate) {
-            setValidationErrors('start date is required')
+            setValidationErrors('Start date is required')
             return false
         }
         if (!from_city || !to_city) {
-            setValidationErrors('start city and end city are required')
+            setValidationErrors('Start city and end city are required')
 
             return false
         }
         if (from_city === to_city) {
-            setValidationErrors('start city cannot be same as end city')
+            setValidationErrors('Start city cannot be same as end city')
             return false
         }
         return true
@@ -81,7 +84,7 @@ export default function FlightsSearch() {
         <>
             <FormControl error={!!validationErrors} className='form-control-search'>
                 <Typography variant='h1' className='main'>FLIGHTSSALES</Typography>
-                <Typography variant='h3' className='main'>We are here to help you find tickets</Typography>
+                <Typography variant='h3' className='main'>{t('flights.title')}</Typography>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <Stack className='cities-search-stack'>
                         <Autocomplete
@@ -91,8 +94,8 @@ export default function FlightsSearch() {
                             renderInput={(params) => <TextField {...params}
                                 className='whitesmoke'
                                 variant='outlined'
-                                label="Departure City"
-                                placeholder='Pick departure city'
+                                label={t('flights.departure_city')}
+                                placeholder={t('flights.departure_city_placeholder')}
                                 InputLabelProps={{ shrink: true }} />}
                             value={from_city}
                             onChange={(event: any, newValue: string | null) => {
@@ -106,8 +109,8 @@ export default function FlightsSearch() {
                             renderInput={(params) => <TextField {...params}
                                 className="whitesmoke"
                                 variant='outlined'
-                                label="Arrival City"
-                                placeholder='Pick arrival city'
+                                label={t('flights.arrival_city')}
+                                placeholder={t('flights.arrival_city_placeholder')}
                                 InputLabelProps={{ shrink: true }} />}
                             value={to_city}
                             onChange={(event: any, newValue: string | null) => {
@@ -115,7 +118,7 @@ export default function FlightsSearch() {
                             }}
                         />
                         <DatePicker
-                            label="Start Date"
+                            label={t('flights.start_date')}
                             className='whitesmoke'
                             sx={{
                                 borderColor: 'whitesmoke',
@@ -126,9 +129,9 @@ export default function FlightsSearch() {
                             value={startDate}
                             defaultValue={tomorrow.toDate()}
                             onChange={(newValue: Date | null) => setStartDate(newValue)}
-                            slotProps={{ textField: { InputLabelProps: { shrink: true }, placeholder: 'Pick start date' } }} />
+                            slotProps={{ textField: { InputLabelProps: { shrink: true }, placeholder: t('flights.start_date_placeholder') } }} />
                         <DatePicker
-                            label="Finish date"
+                            label={t('flights.finish_date')}
                             className='whitesmoke'
                             sx={{
                                 borderColor: 'whitesmoke',
@@ -144,9 +147,9 @@ export default function FlightsSearch() {
                             id="combo-box-demo"
                             options={searchByOptions}
                             renderInput={(params) => <TextField {...params}
-                                label="Search by"
+                                label={t('flights.search_by')}
                                 className='whitesmoke'
-                                placeholder='Pick your search parameter'
+                                placeholder={t('flights.search_placeholder')}
                                 InputLabelProps={{ shrink: true }} />}
                             value={sortedBy}
                             onChange={(event: any, newValue: string | null) => {
@@ -155,14 +158,15 @@ export default function FlightsSearch() {
                         />
                     </Stack>
                 </LocalizationProvider>
+                {validationErrors ? <Typography variant='h5' className='red-text'>{validationErrors}</Typography> : null}
+                {errors_city ? <Typography variant='h5' className='red-text'>{errors_city}</Typography> : null}
+
                 <Button
                     onClick={handleGetPath} fullWidth sx={{ marginTop: 4 }}
                     variant='contained' color='primary'
-                    className='flight-search'>SEARCH
+                    className='flight-search'>{t('flights.search_button')}
                 </Button>
-                {validationErrors ? <AlertMessage errorMessage={validationErrors} /> : null}
                 {errors_flights ? <AlertMessage errorMessage={errors_flights} /> : null}
-                {errors_city ? <AlertMessage errorMessage={errors_city} /> : null}
             </FormControl>
         </>
     )

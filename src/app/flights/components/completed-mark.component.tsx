@@ -1,4 +1,3 @@
-import React from 'react'
 import mark from '../assets/completed-mark.png'
 export default function CompletedMarkComponent() {
     return (

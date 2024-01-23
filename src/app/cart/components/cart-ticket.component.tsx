@@ -1,11 +1,22 @@
-import { Ticket } from '../types/Ticket.type'
-import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Typography } from '@mui/material'
-import ClearIcon from '@mui/icons-material/Clear';
 import { useState } from 'react';
 import useRepository from 'src/hooks/useRepositiry';
+
+// ======= utils, helpers ======= //
+import { useTranslation } from "react-i18next"
+
+// ======= store ======= //
 import { useAppDispatch } from 'src/storeTypes';
 import { getTickets } from '../store/cart.actions';
+
+// ======= utils, types ======= //
+import { Ticket } from '../types/Ticket.type'
+
+// ======= mui ======= //
+import { Button, Card, CardActions, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, Typography } from '@mui/material'
+import ClearIcon from '@mui/icons-material/Clear';
 import { LoadingButton } from '@mui/lab';
+
+// ======= components ======= //
 import AlertMessage from 'src/components/alert-message';
 interface Props {
     ticket: Ticket
@@ -15,6 +26,8 @@ export default function CartTicketComponent({ ticket }: Props) {
     const handleClose = () => setOpen(false)
     const [isLoading, errors, data, fetchData] = useRepository()
     const dispatch = useAppDispatch()
+    const { t } = useTranslation()
+
     const handleAgree = async () => {
         await fetchData(`/ticket/${ticket.id}`, 'delete')
         dispatch(getTickets())
@@ -28,13 +41,13 @@ export default function CartTicketComponent({ ticket }: Props) {
                         {ticket.holder_first_name} {ticket.holder_last_name}
                     </Typography>
                     <Typography variant='h5' paddingTop={'3px'}>
-                        FROM: {ticket.flight.from_city.title}
+                        {t('cart.from')}: {ticket.flight.from_city.title}
                     </Typography>
                     <Typography variant='h5' paddingTop={'3px'}>
-                        TO: {ticket.flight.to_city.title}
+                        {t('cart.to')}: {ticket.flight.to_city.title}
                     </Typography>
                     <Typography variant='h5' paddingTop={'3px'}>
-                        STATUS: {ticket.status}
+                        {t('cart.status')}: {ticket.status}
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -50,14 +63,16 @@ export default function CartTicketComponent({ ticket }: Props) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogContent>
-                    <DialogContentText id="alert-dialog-description" sx={{fontSize: 20}}>
-                        Delete ticket from cart ?
+                    <DialogContentText id="alert-dialog-description" sx={{ fontSize: 20 }}>
+                        {t('cart.dialog_title')}
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions sx={{justifyContent: 'center'}}>
-                    <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>Disagree</Button>
+                <DialogActions sx={{ justifyContent: 'center' }}>
+                    <Button onClick={handleClose} variant='contained' color='success' className='disagreeBtn'>
+                        {t('cart.dialog_back')}
+                    </Button>
                     <LoadingButton loading={isLoading} variant='contained' color='error' onClick={handleAgree} autoFocus>
-                        Agree
+                        {t('cart.dialog_delete')}
                     </LoadingButton>
                 </DialogActions>
             </Dialog>

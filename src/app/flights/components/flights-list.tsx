@@ -3,6 +3,9 @@ import { Flight } from '../types/Flight.type'
 import { Paths } from '../types/Paths.type'
 import transformDate from 'src/utils/transform-date'
 
+// =======  helpers ======= //
+import { useTranslation } from 'react-i18next';
+
 // ======= mui ======= //
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
@@ -27,6 +30,8 @@ export default function FlightsList({ flightList }: Props) {
     const [start_date, start_time, end_date, end_time] = transformDate(flightList)
     const [isCreated, setIsCreated] = useState<boolean>(false)
     const [open, setOpen] = useState(false);
+    const { t } = useTranslation();
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false)
@@ -68,7 +73,7 @@ export default function FlightsList({ flightList }: Props) {
             <Stack direction='row' className='flights-element-stack'>
                 <Stack className='price-stack' gap={3}>
                     <Typography variant='h1'>{totalPrice}</Typography>
-                    <Button variant='contained' onClick={handleOpen} color='success'>Add to cart</Button>
+                    <Button variant='contained' onClick={handleOpen} color='success'>{t('flights.add_button')}</Button>
                     <Modal
                         aria-labelledby="spring-modal-title"
                         aria-describedby="spring-modal-description"
@@ -77,29 +82,19 @@ export default function FlightsList({ flightList }: Props) {
                         closeAfterTransition
                     >
                         <Fade in={open} >
-                            <div style={{
-                                position: 'absolute', backgroundColor: 'white', top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                width: 300,
-                                height: 300,
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                borderRadius: '24px'
-                            }}>
+                            <Stack className='create-order-stack'>
                                 {isCreated ? <CompletedMarkComponent />
                                     :
                                     <FormWrapper onSubmit={formik.handleSubmit}>
-                                        <Typography variant='h2'>Credentials</Typography>
+                                        <Typography variant='h2'>{t('flights.creds')}</Typography>
                                         <TextField
                                             variant='outlined'
                                             color='secondary'
                                             fullWidth
                                             id="holder_first_name"
                                             name="holder_first_name"
-                                            label="Holder First Name"
-                                            placeholder='Enter First Name'
+                                            label={t('flights.holder_fn')}
+                                            placeholder={t('flights.holder_fn_placeholder')}
                                             InputLabelProps={{ shrink: true }}
                                             value={formik.values.holder_first_name}
                                             onChange={formik.handleChange}
@@ -113,8 +108,8 @@ export default function FlightsList({ flightList }: Props) {
                                             fullWidth
                                             id="holder_last_name"
                                             name="holder_last_name"
-                                            label="Holder Last Name"
-                                            placeholder='Enter Last Name'
+                                            label={t('flights.holder_ln')}
+                                            placeholder={t('flights.holder_ln_placeholder')}
                                             InputLabelProps={{ shrink: true }}
                                             value={formik.values.holder_last_name}
                                             onChange={formik.handleChange}
@@ -123,11 +118,10 @@ export default function FlightsList({ flightList }: Props) {
                                             helperText={formik.touched.holder_last_name && formik.errors.holder_last_name}
                                         />
 
-                                        <LoadingButton loading={isLoading} variant='contained' type="submit">create offer</LoadingButton>
+                                        <LoadingButton loading={isLoading} variant='contained' type="submit">{t('flights.create_button')}</LoadingButton>
                                     </FormWrapper>
                                 }
-
-                            </div>
+                            </Stack>
                         </Fade>
                     </Modal>
                 </Stack>
@@ -157,7 +151,6 @@ export default function FlightsList({ flightList }: Props) {
                     </Stack>
                     :
                     null}
-
             </Stack>
         </>
     )
