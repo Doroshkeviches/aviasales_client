@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import { io } from 'socket.io-client';
 import { useAppSelector } from 'src/storeTypes';
 import { sessionSelector } from '../auth/store/auth.selector';
 import { Button, Stack, TextField } from '@mui/material';
 import MessageAdmin from './components/message-admin';
 import MessageClient from './components/message-client';
-// import { messages } from './mock-messages';
+import { userSelector } from '../user/store/user.selector';
 
 const URL = 'http://localhost:4444';
 const token = localStorage.getItem('refresh-token')
@@ -17,7 +17,11 @@ const socket = io(URL, {
 
 export default function ChatPage() {
     const [messages, setMessages] = useState<any[]>([])
+    const [value, setValue] = useState<string>('')
+
     const session = useAppSelector(sessionSelector)
+    const user = useAppSelector(userSelector)
+
     useEffect(() => {
         console.log(session)
         socket.emit('connect-user')
@@ -32,22 +36,39 @@ export default function ChatPage() {
             setMessages(prev => [...prev, message])
         })
     }, [])
+
+    const handleSendMessage = () => {
+        const body = {
+            message: value,
+            first_name: user?.first_name,
+            last_name: user?.last_name,
+            room_id: session?.id,
+            user_id: session?.id,
+            created_at: Date.now()
+        }
+        socket.emit('message', body)
+        setValue('')
+    }
+    const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)
+
     return (
         <Stack className='chat-stack'>
             <Stack className='messages-stack'>
                 {messages.map(mes => {
-                    return mes.id === 'Admin' ? <MessageAdmin {...mes} /> : <MessageClient {...mes} />
+                    return mes.id === session?.id ? <MessageAdmin {...mes} /> : <MessageClient {...mes} />
                 })}
             </Stack>
             <Stack direction={'row'} sx={{ margin: 'auto 0 10px', width: '100%', position: 'static' }}>
                 <TextField
+                    value={value}
+                    onChange={handleChangeInput}
                     fullWidth
                     className='whitesmoke'
                     id="message"
                     name="message"
                     placeholder='Enter your message'
                 />
-                <Button variant='contained' color='primary' sx={{ width: '20%' }}>Send</Button>
+                <Button onClick={handleSendMessage} variant='contained' color='primary' sx={{ width: '20%' }}>Send</Button>
             </Stack>
         </Stack>
     )
