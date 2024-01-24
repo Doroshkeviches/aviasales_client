@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react'
-import { io } from 'socket.io-client';
 import { useAppSelector } from 'src/storeTypes';
 import { sessionSelector } from '../auth/store/auth.selector';
 import { Button, Stack, TextField } from '@mui/material';
@@ -7,14 +6,7 @@ import MessageAdmin from './components/message-admin';
 import MessageClient from './components/message-client';
 import AlertMessage from 'src/components/alert-message';
 import { useTranslation } from 'react-i18next';
-
-const URL = 'http://localhost:4444';
-const token = localStorage.getItem('refresh-token')
-const socket = io(URL, {
-    extraHeaders: {
-        Authorization: `Bearer ${token}`
-    }
-});
+import socket from "../../sockets";
 
 export default function ChatPage() {
     const [messages, setMessages] = useState<any[]>([])
@@ -41,7 +33,7 @@ export default function ChatPage() {
     }, [])
 
     useEffect(() => {
-        chatRef.current?.scrollIntoView() //прокрутка до нового сообщения типо работает но выглядит не супер )) на невысоких устройствах ваще говно
+        chatRef.current?.scrollIntoView()
     }, [messages])
 
     const handleSendMessage = (e: FormEvent) => {
