@@ -21,12 +21,12 @@ export default function UserDeviceComponent({ device }: Props) {
     const handleDeleteSelectDevice = async () => {
         const body = { device_id: device.device_id }
         const res = await fetchData('/devices/signout-selected-session', 'post', body)
-        if (res.data) {
+        if (res.data) { 
             dispatch(getUserDevices())
         }
     }
     return (
-        <Stack direction='row' alignItems='center' gap={3}>
+        <Stack direction='row' alignItems='center' gap={3} >
             <Typography variant='h4' className='main'>{t('profile.device')}: {device.id}</Typography>
             <Button variant='contained' color='error' onClick={handleDeleteSelectDevice}>{t('profile.delete_button')}</Button>
         </Stack>

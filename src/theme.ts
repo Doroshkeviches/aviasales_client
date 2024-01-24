@@ -317,6 +317,7 @@ export const theme = createTheme({
     t6: {
       fontSize: FontSize.T6,
       fontWeight: FontWeight.Normal,
+      fontFamily: Fonts.primary
     },
   },
   palette: {
@@ -722,7 +723,7 @@ export const theme = createTheme({
             className: 'disagreeBtn',
           },
           style: {
-            padding: '4px 8px',
+            padding: '1px 8px',
             textTransform: 'capitalize',
             textAlign: 'center',
             color: colors.whitesmoke,

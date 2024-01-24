@@ -56,5 +56,9 @@
     "dialog_title": "Удалить билет из корзины?",
     "dialog_back": "Назад",
     "dialog_delete": "Удалить"
+  },
+  "chat":{
+    "send_button": "Отправить",
+    "message_placeholder": "Введите сообщение"
   }
 }

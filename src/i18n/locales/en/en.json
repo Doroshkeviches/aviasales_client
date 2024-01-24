@@ -53,5 +53,9 @@
     "dialog_title": "Delete ticket from cart?",
     "dialog_back": "Back",
     "dialog_delete": "Delete"
+  },
+  "chat":{
+    "send_button": "Send",
+    "message_placeholder": "Enter your message"
   }
 }
