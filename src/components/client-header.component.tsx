@@ -23,6 +23,7 @@ const ClientHeaderComp: FC = () => {
     const navToFlights = () => navigate(RoutesConstant.flights)
     const navToCart = () => navigate(RoutesConstant.cart)
     const navToProfile = () => navigate(RoutesConstant.user)
+    const navToChat = () => navigate(RoutesConstant.chat)
 
     return (
         <AppBar position="static" className="header-bar">
@@ -30,7 +31,7 @@ const ClientHeaderComp: FC = () => {
                 <MenuItem onClick={navToFlights}>
                     <Typography variant="h4" className="navlink">{t('header.flights')}</Typography>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem onClick={navToChat}>
                     <Typography variant="h4" className="navlink">{t('header.chat')}</Typography>
                 </MenuItem>
                 <MenuItem onClick={navToProfile}>

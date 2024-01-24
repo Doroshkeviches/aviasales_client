@@ -284,6 +284,9 @@ export const theme = createTheme({
         fontWeight: FontWeight.SemiBold,
         cursor: CursorType.Pointer,
       },
+      '&.message-user':{
+        fontWeight: FontWeight.SemiBold, 
+      },
       '&.forget-password': {
         marginLeft: 'auto',
         cursor: CursorType.Pointer,
@@ -971,6 +974,25 @@ export const theme = createTheme({
             justifyContent: 'center',
             borderRadius: '24px',
           },
+          '&.chat-stack': {
+            backgroundColor: colors.grey,
+            height: '80vh',
+            alignItems: 'center',
+            width: '50%',
+            margin: '10px auto',
+            borderRadius: '24px',
+            padding: '10px 30px',
+          },
+          '&.messages-stack': {
+            '&::-webkit-scrollbar': {
+              width: 0,
+            },
+            display: 'block',
+            overflowY: 'scroll',
+            alignItems: 'center',
+            width: '100%',
+            position: 'relative',
+          },
         },
       },
     },
@@ -1004,6 +1026,9 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           padding: 10,
+          '&.message': {
+            paddingBottom: 10,
+          },
         },
       },
     },
@@ -1055,10 +1080,10 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           minWidth: '20%',
-          
+
           '& .MuiSelect-select': {
             padding: '4px 6px',
-            
+
             '@media (max-width: 520px)': {
               fontSize: FontSize.H6,
             },
