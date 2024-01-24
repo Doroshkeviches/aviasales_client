@@ -29,6 +29,15 @@
     "create_button": "Добавить билет",
     "creds": "Данные"
   },
+  "flight":{
+    "from": "Откуда",
+    "to": "Куда",
+    "price": "Цена",
+    "start": "Вылет",
+    "end": "Прилет",
+    "available_seats": "Доступно мест",
+    "plane": "Самолет"
+  },
   "searchOptions": {
     "price": "Цена",
     "time": "Время"
