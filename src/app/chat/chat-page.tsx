@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useRef, useState } from 'react'
 import { io } from 'socket.io-client';
 import { useAppSelector } from 'src/storeTypes';
 import { sessionSelector } from '../auth/store/auth.selector';
@@ -18,7 +18,7 @@ const socket = io(URL, {
 export default function ChatPage() {
     const [messages, setMessages] = useState<any[]>([])
     const [value, setValue] = useState<string>('')
-
+    const chatRef = useRef<HTMLDivElement>(null)
     const session = useAppSelector(sessionSelector)
     const user = useAppSelector(userSelector)
 
@@ -27,7 +27,6 @@ export default function ChatPage() {
         socket.emit('connect-user')
         socket.emit('join-room', { room_id: session?.id })
         socket.emit('get-messages', { room_id: session?.id })
-
         socket.on('messages', (messages) => {
             console.log(messages, 'prev message')
             setMessages(messages)
@@ -36,8 +35,11 @@ export default function ChatPage() {
             console.log(message)
             setMessages(prev => [...prev, message])
         })
+        chatRef.current?.scrollIntoView()
     }, [])
-
+    useEffect(() => {
+        chatRef.current?.scrollIntoView() //прокрутка до нового сообщения типо работает но выглядит не супер )) на невысоких устройствах ваще говно
+    }, [messages])
     const handleSendMessage = () => {
         const body = {
             message: value,
@@ -59,6 +61,7 @@ export default function ChatPage() {
                 {messages.map(mes => {
                     return mes.id === session?.id ? <MessageAdmin {...mes} /> : <MessageClient {...mes} />
                 })}
+                <div ref={chatRef}></div>
             </Stack>
             <Stack direction={'row'} sx={{ margin: 'auto 0 10px', width: '100%', position: 'static' }}>
                 <TextField
