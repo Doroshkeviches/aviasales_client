@@ -171,7 +171,7 @@ export const theme = createTheme({
         lineHeight: '1.2',
         fontSize: FontSize.H4,
       },
-      '@media (max-width: 380px)': {
+      '@media (max-width: 420px)': {
         lineHeight: '1',
         fontSize: FontSize.H6,
       },
@@ -195,7 +195,7 @@ export const theme = createTheme({
         lineHeight: '1.2',
         fontSize: FontSize.H5,
       },
-      '@media (max-width: 380px)': {
+      '@media (max-width: 420px)': {
         lineHeight: '1',
         fontSize: FontSize.H6,
       },
@@ -224,7 +224,7 @@ export const theme = createTheme({
         lineHeight: '1.2',
         fontSize: FontSize.H6,
       },
-      '@media (max-width: 380px)': {
+      '@media (max-width: 420px)': {
         lineHeight: '1',
         fontSize: FontSize.T6,
       },
@@ -619,6 +619,9 @@ export const theme = createTheme({
         {
           props: { variant: 'contained' },
           style: {
+            '@media (max-width: 700px)': {
+              fontSize: FontSize.T6
+            },
             borderRadius: '8px',
             fontSize: '16px',
             fontWeight: FontWeight.Normal,
@@ -699,7 +702,7 @@ export const theme = createTheme({
               lineHeight: '1.2',
               fontSize: 12,
             },
-            '@media (max-width: 380px)': {
+            '@media (max-width: 420px)': {
               padding: '3px 6px',
               lineHeight: '1',
               fontSize: 10,
@@ -763,7 +766,7 @@ export const theme = createTheme({
               fontSize: FontSize.H6,
               padding: '6px 4px',
             },
-            '@media (max-width: 380px)': {
+            '@media (max-width: 420px)': {
               fontSize: FontSize.T6,
               padding: '8px 4px',
             },
@@ -820,7 +823,7 @@ export const theme = createTheme({
             width: '55%',
 
             '@media (max-width: 1100px)': {
-              width: '65%',
+              width: '75%',
             },
 
             '@media (max-width: 785px)': {
@@ -831,7 +834,7 @@ export const theme = createTheme({
               padding: 5,
               width: '85%',
             },
-            '@media (max-width: 380px)': {
+            '@media (max-width: 420px)': {
               padding: 2,
               width: '95%',
             },
