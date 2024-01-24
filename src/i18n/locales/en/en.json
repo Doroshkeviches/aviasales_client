@@ -27,6 +27,15 @@
     "create_button": "Create Order",
     "creds": "Credentials"
   },
+  "flight":{
+    "from": "From",
+    "to": "To",
+    "price": "Price",
+    "start": "Start",
+    "end": "End",
+    "available_seats": "Available Seats",
+    "plane": "Plane"
+  },
   "searchOptions": {
     "price": "Price",
     "time": "Time"

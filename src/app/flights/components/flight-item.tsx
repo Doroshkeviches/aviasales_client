@@ -1,8 +1,10 @@
 // ======= types ======= //
+import transformPrice from 'src/utils/transform-price'
 import { Flight } from '../types/Flight.type'
 
 // ======= mui ======= //
 import { Card, CardContent, Stack, Tooltip, Typography } from '@mui/material'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   flight: Flight
@@ -15,19 +17,22 @@ export default function FlightItem({ flight }: Props) {
 
   const start_date = transform_flight_date_to_date(flight.start_flight_date)
   const end_date = transform_flight_date_to_date(flight.end_flight_date)
-
+  const { t } = useTranslation();
+  
+  const totalPrice = transformPrice(flight.price)
+  
   return (
     <Stack direction='row' className='plane-icon-stack'>
       <Tooltip color="inherit" placement="top" title={
         <Card className='flight-card'>
           <CardContent className='card-content'>
-            <Typography variant='h4'>From: {flight.from_city.title}</Typography>
-            <Typography variant='h4'>To: {flight.to_city.title}</Typography>
-            <Typography variant='h4'>Start: {start_date}</Typography>
-            <Typography variant='h4'>End: {end_date}</Typography>
-            <Typography variant='h4'>Plane: {flight.plane.title}</Typography>
-            <Typography variant='h4'>Available Seats: {flight.available_seats}</Typography>
-            <Typography variant='h4'>Price: {flight.price}</Typography>
+          <Typography variant='h4'>{t('flight.from')}: {flight.from_city.title}</Typography>
+            <Typography variant='h4'>{t('flight.to')}: {flight.to_city.title}</Typography>
+            <Typography variant='h4'>{t('flight.start')}: {start_date}</Typography>
+            <Typography variant='h4'>{t('flight.end')}: {end_date}</Typography>
+            <Typography variant='h4'>{t('flight.plane')}: {flight.plane.title}</Typography>
+            <Typography variant='h4'>{t('flight.available_seats')}: {flight.available_seats}</Typography>
+            <Typography variant='h4'>{t('flight.price')}: {totalPrice}</Typography>
           </CardContent>
         </Card>
       }>
