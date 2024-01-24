@@ -6,6 +6,7 @@ import { Button, Stack, TextField } from '@mui/material';
 import MessageAdmin from './components/message-admin';
 import MessageClient from './components/message-client';
 import { userSelector } from '../user/store/user.selector';
+import AlertMessage from 'src/components/alert-message';
 
 const URL = 'http://localhost:4444';
 const token = localStorage.getItem('refresh-token')
@@ -45,6 +46,7 @@ export default function ChatPage() {
         chatRef.current?.scrollIntoView() //прокрутка до нового сообщения типо работает но выглядит не супер )) на невысоких устройствах ваще говно
     }, [messages])
     const handleSendMessage = () => {
+        setSocketErrors('')
         const body = {
             message: value,
             first_name: 'asd',
@@ -79,7 +81,7 @@ export default function ChatPage() {
                 />
                 <Button onClick={handleSendMessage} variant='contained' color='primary' sx={{ width: '20%' }}>Send</Button>
             </Stack>
-            {socketErrors}
+            {socketErrors ? <AlertMessage errorMessage={socketErrors} /> : null}
         </Stack>
     )
 }
