@@ -18,6 +18,7 @@ const socket = io(URL, {
 export default function ChatPage() {
     const [messages, setMessages] = useState<any[]>([])
     const [value, setValue] = useState<string>('')
+    const [socketErrors, setSocketErrors] = useState('')
     const chatRef = useRef<HTMLDivElement>(null)
     const session = useAppSelector(sessionSelector)
     const user = useAppSelector(userSelector)
@@ -27,6 +28,9 @@ export default function ChatPage() {
         socket.emit('connect-user')
         socket.emit('join-room', { room_id: session?.id })
         socket.emit('get-messages', { room_id: session?.id })
+        socket.on('exception', (exception) => {
+            setSocketErrors(exception.message)
+        })
         socket.on('messages', (messages) => {
             console.log(messages, 'prev message')
             setMessages(messages)
@@ -44,7 +48,7 @@ export default function ChatPage() {
         const body = {
             message: value,
             first_name: 'asd',
-            last_name: 'asd',
+            last_name: 1,
             room_id: session?.id,
             user_id: session?.id,
             created_at: 1
@@ -75,6 +79,7 @@ export default function ChatPage() {
                 />
                 <Button onClick={handleSendMessage} variant='contained' color='primary' sx={{ width: '20%' }}>Send</Button>
             </Stack>
+            {socketErrors}
         </Stack>
     )
 }
