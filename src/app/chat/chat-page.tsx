@@ -68,7 +68,7 @@ export default function ChatPage() {
                         name="message"
                         placeholder={t('chat.message_placeholder')}
                     />
-                    <Button type='submit' variant='contained' color='primary' sx={{ width: '30%', boxSizing: 'border-box' }}>
+                    <Button type='submit' variant='contained' color='primary' sx={{ minWidth: '30%' }}>
                         {t('chat.send_button')}
                     </Button>
 
