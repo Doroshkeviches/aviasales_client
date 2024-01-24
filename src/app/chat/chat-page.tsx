@@ -33,6 +33,7 @@ export default function ChatPage() {
             setMessages(messages)
         })
         socket.on('message', (message) => {
+            console.log(message)
             setMessages(prev => [...prev, message])
         })
     }, [])
@@ -40,12 +41,13 @@ export default function ChatPage() {
     const handleSendMessage = () => {
         const body = {
             message: value,
-            first_name: user?.first_name,
-            last_name: user?.last_name,
+            first_name: 'asd',
+            last_name: 'asd',
             room_id: session?.id,
             user_id: session?.id,
-            created_at: Date.now()
+            created_at: 1
         }
+        console.log(body)
         socket.emit('message', body)
         setValue('')
     }

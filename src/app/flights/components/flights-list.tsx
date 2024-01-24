@@ -27,7 +27,9 @@ interface Props {
 }
 
 export default function FlightsList({ flightList }: Props) {
-    const [start_date, start_time, end_date, end_time] = transformDate(flightList)
+    const [start_date, start_time] = transformDate({ date: flightList.start_date })
+    const [end_date, end_time] = transformDate({ date: flightList.end_date })
+
     const [isCreated, setIsCreated] = useState<boolean>(false)
     const [open, setOpen] = useState(false);
     const { t } = useTranslation();
